@@ -1,0 +1,10 @@
+node_modules
+public
+.env
+.next
+
+# Optional
+.vscode
+yarn.lock
+package-lock.json
+

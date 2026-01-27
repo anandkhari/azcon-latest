@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0f4c81;
+  --color-primary-light: #1b6ca8;
+  --color-accent: #87ceeb; /* Light Sky Blue */
+  --color-text-base: #333333;
+  --color-text-muted: #666666;
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+
+  --font-family-sans: theme(fontFamily.sans);
+  --font-family-serif: theme(fontFamily.serif);
+
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  
+  /* Animation timing variables */
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+  
+  /* Custom easing functions */
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-primary;
+  }
+
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl; }
+
+  p {
+    @apply text-text-muted leading-relaxed;
+  }
+
+  a {
+    @apply text-primary hover:text-primary-light transition-colors;
+  }
+}
+
+/* Reusable animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Utility animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s var(--ease-smooth) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s var(--ease-smooth) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s var(--ease-smooth) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s var(--ease-smooth) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s var(--ease-smooth) forwards;
+}
