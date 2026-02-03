@@ -56,9 +56,18 @@
       "Title": "Engineered for <italic>Reliability</italic>",
       "Description": "Consistently exceeding client expectations through technical mastery and strong management.",
       "Cards": [
-        { "title": "Skilled Workforce", "desc": "Our reliable and skilled workforce is our greatest strength, supported by continuous technical training." },
-        { "title": "Authorized Partners", "desc": "Strong partnerships with leading global companies in equipment, technology, and material supply." },
-        { "title": "UAE Market Leader", "desc": "Leaders with extensive regional experience delivering projects from initial assessment to final handover." }
+        {
+          "title": "Skilled Workforce",
+          "desc": "Our reliable and skilled workforce is our greatest strength, supported by continuous technical training."
+        },
+        {
+          "title": "Authorized Partners",
+          "desc": "Strong partnerships with leading global companies in equipment, technology, and material supply."
+        },
+        {
+          "title": "UAE Market Leader",
+          "desc": "Leaders with extensive regional experience delivering projects from initial assessment to final handover."
+        }
       ]
     },
     "Validation": {
@@ -66,12 +75,36 @@
       "Title": "Serving the <italic>UAE Elite Sectors</italic>",
       "Trusted": "TRUSTED",
       "Testimonials": [
-        { "n": "Luxury Villas", "s": "Dubai Residential", "q": "Specialized maintenance where every aesthetic detail matters." },
-        { "n": "Medical Clinics", "s": "UAE Healthcare", "q": "Precision MEP and HVAC maintenance for critical environments." },
-        { "n": "Hotels", "s": "Hospitality Hub", "q": "Ensuring 24/7 guest comfort through reliable technical services." },
-        { "n": "Industrial", "s": "Factories & WH", "q": "Robust maintenance for mechanical, electrical, and plumbing uptime." },
-        { "n": "Retail", "s": "Commercial Shops", "q": "Fit-out and maintenance that balances beauty with technical performance." },
-        { "n": "Government", "s": "Infrastructure", "q": "Reliable civil works and road maintenance for the public sector." }
+        {
+          "n": "Luxury Villas",
+          "s": "Dubai Residential",
+          "q": "Specialized maintenance where every aesthetic detail matters."
+        },
+        {
+          "n": "Medical Clinics",
+          "s": "UAE Healthcare",
+          "q": "Precision MEP and HVAC maintenance for critical environments."
+        },
+        {
+          "n": "Hotels",
+          "s": "Hospitality Hub",
+          "q": "Ensuring 24/7 guest comfort through reliable technical services."
+        },
+        {
+          "n": "Industrial",
+          "s": "Factories & WH",
+          "q": "Robust maintenance for mechanical, electrical, and plumbing uptime."
+        },
+        {
+          "n": "Retail",
+          "s": "Commercial Shops",
+          "q": "Fit-out and maintenance that balances beauty with technical performance."
+        },
+        {
+          "n": "Government",
+          "s": "Infrastructure",
+          "q": "Reliable civil works and road maintenance for the public sector."
+        }
       ]
     },
     "Assistance": {
@@ -80,11 +113,26 @@
       "Description": "Azcon ensures every maintenance or technical project is completed on time and within budget.",
       "Button": "Dispatch Technical Inquiry",
       "FAQ": [
-        { "q": "What facility types does Azcon serve?", "a": "We serve hotels, clinics, factories, gyms, villas, shops, labour accommodations, and restaurants across the UAE." },
-        { "q": "How do you handle complex technical projects?", "a": "With strong management and global material partnerships, we manage projects from planning to final handover." },
-        { "q": "What is your core maintenance philosophy?", "a": "Ensuring long-term performance, safety, and sustainability of assets through strict adherence to local regulations." },
-        { "q": "Are your technicians certified?", "a": "Yes, our workforce undergoes continuous training in both technical and soft skills to ensure high-quality standards." },
-        { "q": "Do you offer emergency infrastructure support?", "a": "Yes, we cover the full lifecycle including scheduled preventive maintenance and emergency response for infrastructure systems." }
+        {
+          "q": "What facility types does Azcon serve?",
+          "a": "We serve hotels, clinics, factories, gyms, villas, shops, labour accommodations, and restaurants across the UAE."
+        },
+        {
+          "q": "How do you handle complex technical projects?",
+          "a": "With strong management and global material partnerships, we manage projects from planning to final handover."
+        },
+        {
+          "q": "What is your core maintenance philosophy?",
+          "a": "Ensuring long-term performance, safety, and sustainability of assets through strict adherence to local regulations."
+        },
+        {
+          "q": "Are your technicians certified?",
+          "a": "Yes, our workforce undergoes continuous training in both technical and soft skills to ensure high-quality standards."
+        },
+        {
+          "q": "Do you offer emergency infrastructure support?",
+          "a": "Yes, we cover the full lifecycle including scheduled preventive maintenance and emergency response for infrastructure systems."
+        }
       ]
     },
     "FinalCTA": {
@@ -123,7 +171,7 @@
     "Description": "With a strong presence across the UAE, we combine technical expertise and strict quality standards to execute projects from concept to completion—ensuring safety and long-term operational excellence.",
     "LearnMore": "Learn More About Us"
   },
-  "Services": {
+ "Services": {
     "Title": "Technical <span>Scope</span>",
     "Subtitle": "Expertise",
     "Description": "Delivering excellence across specialized technical domains with cutting-edge solutions",
@@ -138,7 +186,7 @@
     "building-maintenance": {
       "title": "Building Maintenance",
       "shortDescription": "Comprehensive facility maintenance services ensuring compliance, safety, and long-term asset performance.",
-      "description": "Azcon provides full-spectrum building maintenance across HVAC, MEP systems, civil works, firefighting, and utilities with 24/7 emergency response and AMC programs across the UAE.",
+      "description": "Azcon provides industry-leading building maintenance across the UAE, specializing in the preservation of commercial and residential assets. Our integrated approach covers MEP systems, structural repairs, and utility management. We offer proactive Annual Maintenance Contracts (AMC) designed to ensure 100% compliance with Dubai Municipality and Civil Defense regulations. From 24/7 emergency response to facade restoration, our technical teams utilize advanced diagnostic tools to maintain peak operational efficiency and mitigate asset depreciation for high-value properties.",
       "features": [
         "Preventive & corrective maintenance",
         "MEP systems servicing",
@@ -158,7 +206,7 @@
     "fit-out-works": {
       "title": "Fit-Out Works",
       "shortDescription": "Complete turnkey interior fit-out solutions for commercial, residential, and hospitality spaces across the UAE.",
-      "description": "Azcon delivers premium turnkey fit-out projects from concept design to final handover. Our services include interior planning, partitions, ceilings, flooring, bespoke joinery, electrical works, HVAC integration, plumbing, and authority-approved execution for high-quality commercial and residential spaces.",
+      "description": "Azcon delivers premium turnkey fit-out solutions, transforming empty shells into high-performance environments. We manage the entire project lifecycle, from space planning and bespoke joinery to final authority approvals from DEWA and Civil Defense. Our expertise in HVAC integration and partition systems ensures your commercial or residential space is technically sound and aesthetically superior. We navigate complex UAE municipality permits to deliver world-class craftsmanship within strict timelines, ensuring a stress-free experience for corporate and retail clients.",
       "features": [
         "Interior planning & space optimization",
         "Partition walls & ceiling systems",
@@ -179,7 +227,7 @@
     "hvac-works": {
       "title": "HVAC Works",
       "shortDescription": "Energy-efficient HVAC design, installation, testing, and long-term maintenance solutions across the UAE.",
-      "description": "Azcon delivers complete HVAC engineering solutions including system design, heat load calculations, installation, testing, commissioning, and ongoing maintenance. Our HVAC systems are built for optimal indoor comfort, energy efficiency, and full compliance with UAE regulatory standards for residential, commercial, and industrial facilities.",
+      "description": "We provide sophisticated HVAC engineering tailored to the Middle Eastern climate. Our services encompass heat load calculations, VRF installation, and chilled water system design. We focus on maximizing energy efficiency and air quality through precise testing and commissioning (TAB). Azcon’s specialized maintenance programs prevent system downtime for industrial and commercial facilities, ensuring cooling infrastructure remains sustainable and compliant with local green building codes while providing consistent thermal comfort throughout the year.",
       "features": [
         "HVAC system design & heat load calculations",
         "Ducting & chilled water piping installation",
@@ -199,7 +247,7 @@
     "electrical": {
       "title": "Electrical Works",
       "shortDescription": "Complete electrical engineering, installation, and compliance services.",
-      "description": "Azcon handles power systems, lighting, ELV, CCTV, structured cabling, testing, and long-term maintenance.",
+      "description": "Azcon handles complex power distribution and low-voltage systems for UAE’s critical infrastructure. We specialize in ELV integration, CCTV security, and structured cabling in strict adherence to DEWA standards. Our certified engineers provide load testing, thermal imaging, and authority certification to ensure maximum safety. From residential towers to industrial plants, our maintenance teams offer 24/7 support for panel upgrades and system audits, guaranteeing an uninterrupted and reliable power supply for every project.",
       "features": [
         "Power distribution systems",
         "Lighting & control solutions",
@@ -219,7 +267,7 @@
     "plumbing-contracting": {
       "title": "Plumbing Contracting",
       "shortDescription": "Professional plumbing installation and maintenance services.",
-      "description": "We design and maintain water supply, drainage, and sanitary systems for all property types.",
+      "description": "We deliver professional plumbing installations across the UAE, designing high-performance water supply and drainage networks. Our expertise includes solar water heating, pressurized systems, and sewage network management. Azcon prioritizes water conservation and long-term durability by utilizing premium materials and leak-detection technology. Whether managing high-end villa fit-outs or industrial pumping stations, we coordinate all municipal approvals and authority inspections, providing a seamless and compliant plumbing infrastructure for projects of any magnitude.",
       "features": [
         "Water supply systems",
         "Drainage & sewer networks",
@@ -238,7 +286,7 @@
     "metal-fabrication": {
       "title": "Metal Fabrication",
       "shortDescription": "Structural steel fabrication and custom metal works.",
-      "description": "We fabricate, coat, and install steel structures for industrial and commercial projects.",
+      "description": "Azcon provides precision structural steel fabrication for industrial and commercial projects. Our facilities handle steel trusses, warehouse sheds, and bespoke architectural features. We utilize certified welders to ensure all structures meet rigorous safety standards. Our services include anti-rust coating and industrial-grade surface protection, essential for the Middle Eastern climate. From structural drafting to on-site erection, we deliver high-strength, durable metal solutions that form the backbone of modern UAE infrastructure projects.",
       "features": [
         "Structural steel fabrication",
         "Welding & cutting services",
@@ -257,7 +305,7 @@
     "infrastructure": {
       "title": "Infrastructure Maintenance",
       "shortDescription": "Long-term public and private infrastructure maintenance services.",
-      "description": "We maintain roads, drainage networks, utilities, water systems, landscaping, and environmental assets.",
+      "description": "We specialize in the long-term maintenance of critical public and private infrastructure assets. Our scope includes road resurfacing, drainage network optimization, and utility pumping station servicing. Azcon provides scheduled maintenance programs that prevent structural degradation for master communities and industrial zones. By ensuring compliance with UAE transport authorities, we help maintain operational continuity and asset longevity, offering rapid emergency response for flooding and utility system failures across the Emirates.",
       "features": [
         "Road & pavement maintenance",
         "Drainage network services",
@@ -273,7 +321,7 @@
         { "q": "Do you provide emergency response services?", "a": "Yes. Our teams respond to flooding, system failures, and urgent infrastructure issues." }
       ]
     }
-  },
+},
   "ServicesPage": {
     "Hero": {
       "Title": "Our <italic>Services</italic>",
@@ -361,7 +409,7 @@
         "Phone": "+971",
         "Description": "Describe your needs..."
       },
-      "Submit": "Dispatch Technical Inquiry"
+      "Submit": "Contact Us"
     }
   },
   "CTA": {
@@ -375,6 +423,27 @@
   "Footer": {
     "Description": "A leader in UAE technical services for 18+ years. We provide high-performance, sustainable concepts that are efficient to operate and maintain while preserving an elegant aesthetic look.",
     "OurServices": "Technical Scope",
+    "SectorsServed": "Sectors Served",
+    "Headquarters": "Headquarters",
+    "Address": "AZCON INFRA TECHNICAL SERVICES L.L.C, PO Box 233938, Dubai, UAE",
+    "Copyright": "© {year} AZCON INFRA. All Rights Reserved.",
+    "Links": {
+      "Privacy": "Privacy Protocol",
+      "Terms": "Terms of Service"
+    },
+    "Contact": {
+      "Phone": "+971 4 294 5885",
+      "Mobile": "+971 55 475 3102",
+      "Email": "info@azconinfra.com"
+    },
+    "Sectors": [
+      "Hotels & Clinics",
+      "Factories & Gyms",
+      "Luxury Villas",
+      "Labour Accommodations",
+      "Shops & Restaurants",
+      "Commercial Buildings"
+    ],
     "ServiceNames": {
       "BuildingMaintenance": "Building Maintenance",
       "InteriorFitOut": "Interior Fit-Out",
@@ -383,10 +452,6 @@
       "PlumbingSanitary": "Plumbing & Sanitary",
       "MetalFabrication": "Metal Fabrication",
       "InfrastructureWorks": "Infrastructure Works"
-    },
-    "SectorsServed": "Sectors Served",
-    "Headquarters": "Headquarters",
-    "Address": "PO Box 233938 Dubai, United Arab Emirates",
-    "Copyright": "© {year} AZCON INFRA TECHNICAL SERVICES L.L.C"
+    }
   }
 }

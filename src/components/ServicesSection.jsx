@@ -53,19 +53,19 @@ export default function ServicesSection() {
   const t = useTranslations("Services")
   return (
     <SectionWrapper className="bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#26C6DA] rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#0A192F] rounded-full blur-[120px] animate-pulse delay-1000" />
+      {/* Background glow - Optimized for mobile (smaller blur) */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute top-10 left-[-10%] w-64 h-64 md:w-96 md:h-96 bg-[#26C6DA] rounded-full blur-[80px] md:blur-[120px] animate-pulse" />
+        <div className="absolute bottom-10 right-[-10%] w-64 h-64 md:w-96 md:h-96 bg-[#0A192F] rounded-full blur-[80px] md:blur-[120px] animate-pulse delay-1000" />
       </div>
 
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-20 relative z-10">
-        <span className="text-[#26C6DA] font-black uppercase tracking-[0.3em] text-xs bg-[#0A192F]/5 px-4 py-2 rounded-full">
+      {/* Header - Adjusted margins for mobile */}
+      <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20 relative z-10">
+        <span className="text-[#26C6DA] font-black uppercase inline-block tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs bg-[#0A192F]/5 px-4 py-2 rounded-full mb-4">
           {t("Subtitle")}
         </span>
 
-        <h2 className="text-4xl md:text-6xl font-black text-[#0A192F] mt-6 mb-6 uppercase tracking-tighter">
+        <h2 className="text-3xl md:text-6xl font-black text-[#0A192F] mt-2 mb-4 md:mb-6 uppercase tracking-tighter leading-none">
           {t.rich("Title", {
             span: (chunks) => (
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#26C6DA] to-[#0A192F] italic">
@@ -75,40 +75,40 @@ export default function ServicesSection() {
           })}
         </h2>
 
-        <p className="text-gray-600 text-sm max-w-2xl mx-auto">
+        <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto px-4 md:px-0">
           {t("Description")}
         </p>
       </div>
 
-      {/* Services Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+      {/* Services Grid - Responsive column flow */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10 px-2 md:px-0">
         {azconServices.map((service, index) => (
           <div
             key={service.slug}
-            className="group relative flex flex-col bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-[0_30px_80px_rgba(38,198,218,0.25)] transition-all duration-700 border border-white/50 hover:border-[#26C6DA]/50 opacity-0 translate-y-8"
+            className="group relative flex flex-col bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-[#26C6DA]/50"
             style={{
-              animation: `slideInUp 0.6s ease-out forwards`,
-              animationDelay: `${index * 0.15}s`,
+              // Animation handled via CSS to prevent JS layout shifts on slow mobile loads
+              animation: `slideInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards`,
+              animationDelay: `${index * 0.1}s`,
+              opacity: 0,
+              transform: 'translateY(20px)'
             }}
           >
-            {/* Glow */}
-            {/* <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#26C6DA] via-[#0A192F] to-[#26C6DA] blur-md" />
-            </div> */}
-
-            {/* Image */}
-            <div className="relative h-72 w-full overflow-hidden rounded-t-2xl">
+            {/* Image Section - Scaled for mobile aspect ratios */}
+            <div className="relative h-56 md:h-72 w-full overflow-hidden">
               <Image
                 src={service.image}
                 alt={service.title}
                 fill
-                className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-[#0A192F]/20 to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-[#0A192F]/20 to-transparent opacity-70" />
 
-              <div className="absolute top-6 right-6 w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center shadow-2xl group-hover:bg-[#26C6DA] transition-all">
+              {/* Icon Overlay - Slightly smaller on mobile */}
+              <div className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl flex items-center justify-center shadow-2xl group-hover:bg-[#26C6DA] transition-colors duration-300">
                 <svg
-                  className="w-8 h-8 text-white"
+                  className="w-6 h-6 md:w-8 md:h-8 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -123,31 +123,34 @@ export default function ServicesSection() {
               </div>
             </div>
 
-            {/* Content */}
-            <div className="p-8 flex flex-col bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md flex-grow">
-              <div className="absolute -top-4 left-8 bg-gradient-to-r from-[#0A192F] to-[#26C6DA] text-white text-xs font-black px-4 py-2 rounded-full shadow-lg">
+            {/* Content Section - Balanced padding */}
+            <div className="p-6 md:p-8 flex flex-col bg-white/40 backdrop-blur-md flex-grow relative">
+              {/* Counter Badge */}
+              <div className="absolute -top-4 left-6 md:left-8 bg-gradient-to-r from-[#0A192F] to-[#26C6DA] text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-lg z-20">
                 {String(index + 1).padStart(2, "0")}
               </div>
 
-              <h3 className="text-xl font-black text-[#0A192F] mb-4 uppercase mt-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#0A192F] group-hover:to-[#26C6DA] transition-all">
+              <h3 className="text-lg md:text-xl font-black text-[#0A192F] mb-3 uppercase mt-2 group-hover:text-[#26C6DA] transition-colors">
                 {service.title}
               </h3>
 
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">
+              <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-6 line-clamp-3">
                 {service.description}
               </p>
 
-              <div className="relative w-full h-[2px] bg-gray-200 rounded-full mb-6 overflow-hidden">
+              {/* Decorative line - stays hidden until hover on desktop, always visible/thin on mobile? 
+                  Better to keep it as a progress-style bar that fills on hover */}
+              <div className="relative w-full h-[1px] bg-gray-100 mb-6 overflow-hidden">
                 <div className="absolute h-full w-0 bg-gradient-to-r from-[#26C6DA] to-[#0A192F] group-hover:w-full transition-all duration-700" />
               </div>
 
               <Link
                 href={`/services/${service.slug}`}
-                className="mt-auto flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#0A192F] group-hover:text-[#26C6DA] transition-all"
+                className="mt-auto flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#0A192F] hover:text-[#26C6DA] transition-all"
               >
                 {t("TechnicalSpecification")}
                 <svg
-                  className="w-4 h-4 group-hover:translate-x-2 transition-transform"
+                  className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1.5 transition-transform"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -155,7 +158,7 @@ export default function ServicesSection() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
@@ -165,12 +168,11 @@ export default function ServicesSection() {
         ))}
       </div>
 
-      {/* Animations */}
       <style jsx>{`
         @keyframes slideInUp {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;

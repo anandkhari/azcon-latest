@@ -137,7 +137,7 @@ const Hero = () => {
         }}
       />
 
-      <div className="container mt-40 py-6 mx-auto px-6 relative z-10">
+      <div className="container mt-40 py-6 mx-auto  px-10 relative z-10">
         <motion.div
           className="max-w-4xl"
           variants={containerVariants}
@@ -151,7 +151,8 @@ const Hero = () => {
           <AnimatePresence mode="wait">
             <motion.h1
               key={`title-${currentSlide}`}
-              className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[0.95] tracking-tighter uppercase mb-8"
+             className="font-inter text-5xl md:text-6xl font-bold text-white  leading-tight tracking-tight uppercase mb-8"
+
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

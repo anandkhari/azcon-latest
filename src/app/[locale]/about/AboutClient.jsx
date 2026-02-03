@@ -5,208 +5,230 @@ import SectionWrapper from "@/components/SectionWrapper";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { LuEye, LuTarget } from "react-icons/lu";
+import CTA from "@/components/CTA";
 
-const ValueCard = ({ number, title, desc, label }) => (
-  <div className="group p-8 border border-gray-100 bg-white hover:bg-[#0A192F] transition-all duration-500">
-    <span className="text-[#26C6DA] font-black text-xs tracking-widest block mb-4 uppercase group-hover:text-white">
-      {label}
-    </span>
-    <h3 className="text-[#0A192F] group-hover:text-[#26C6DA] text-xl font-black uppercase mb-4 transition-colors tracking-tighter italic">
-      {title}
-    </h3>
-    <p className="text-gray-500 group-hover:text-gray-400 text-sm leading-relaxed">
-      {desc}
-    </p>
-  </div>
+const ValueCard = ({ title, desc, label, delay }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay }}
+    className="group p-10 md:p-14 bg-white hover:bg-[#0A192F] transition-all duration-700 relative overflow-hidden"
+  >
+    {/* Liquid Fill Hover Effect */}
+    <div className="absolute inset-0 bg-[#0A192F] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+
+    <div className="relative z-10">
+      <span className="text-[#26C6DA] font-black text-[10px] tracking-[0.3em] block mb-6 uppercase">
+        {label}
+      </span>
+      <h3 className="text-[#0A192F] group-hover:text-[#26C6DA] text-2xl font-black uppercase mb-6 transition-colors tracking-tighter italic">
+        {title}
+      </h3>
+      <p className="text-gray-500 group-hover:text-gray-400 text-sm leading-relaxed font-medium transition-colors">
+        {desc}
+      </p>
+    </div>
+  </motion.div>
 );
 
 const AboutClient = () => {
-  const t = useTranslations('AboutPage');
+  const t = useTranslations("AboutPage");
 
   return (
     <>
-      <section className="relative h-[70vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
+      {/* --- HERO SECTION --- */}
+      <section className="relative h-[85vh] min-h-[700px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.pexels.com/photos/29470794/pexels-photo-29470794.jpeg"
             alt="Azcon Technical Infrastructure"
             fill
-            className="object-cover scale-105"
+            className="object-cover scale-105 opacity-60"
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/30 via-[#0A192F]/20 to-[#0A192F]/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/60 via-transparent to-[#0A192F]" />
 
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: 80, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "circOut" }}
-            className="h-[3px] bg-[#26C6DA] mx-auto mb-10 shadow-[0_0_15px_rgba(38,198,218,0.5)]"
+            initial={{ width: 0 }}
+            whileInView={{ width: 100 }}
+            transition={{ duration: 1.2, ease: "circOut" }}
+            className="h-[2px] bg-[#26C6DA] mx-auto mb-12 shadow-[0_0_20px_rgba(38,198,218,0.8)]"
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
           >
-            <h1 className="text-6xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter uppercase mb-8 drop-shadow-2xl">
-              {t.rich('Hero.Title', {
-                italic: (chunks) => <span className="text-[#26C6DA]">{chunks}</span>
+            <h1 className="text-3xl md:text-6xl lg:text-6xl font-black text-white tracking-tighter uppercase mb-8 leading-[0.9]">
+              {t.rich("Hero.Title", {
+                italic: (chunks) => (
+                  <span className="text-[#26C6DA] italic">{chunks}</span>
+                ),
               })}
             </h1>
 
-            <p className="text-gray-100 text-lg md:text-2xl max-w-4xl mx-auto font-medium leading-relaxed tracking-wide italic opacity-95 drop-shadow-md">
-              {t('Hero.Subtitle')}
+            <p className="text-gray-200 text-lg md:text-2xl max-w-4xl mx-auto font-light tracking-tight opacity-90 ">
+              {t("Hero.Subtitle")}
             </p>
           </motion.div>
         </div>
 
-        <div className="absolute top-10 left-10 w-20 h-20 border-t border-l border-white/10 pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-20 h-20 border-b border-r border-white/10 pointer-events-none" />
+        {/* Architectural Framing */}
+        <div className="absolute top-12 left-12 w-24 h-24 border-t-2 border-l-2 border-[#26C6DA]/20 hidden md:block" />
+        <div className="absolute bottom-12 right-12 w-24 h-24 border-b-2 border-r-2 border-[#26C6DA]/20 hidden md:block" />
       </section>
 
-      <SectionWrapper className="bg-white overflow-hidden">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
-          <div className="relative">
-            <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#F7F9FC] -z-10 rounded-full blur-3xl opacity-50" />
-            
-            <motion.div 
-              initial={{ opacity: 0, x: -40 }}
+      {/* --- THE EDGE SECTION --- */}
+      <SectionWrapper className="bg-white">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+          <div className="relative h-full">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative h-[600px] w-full shadow-2xl overflow-hidden rounded-sm border-white border-[12px]"
+              className="relative h-full shadow-2xl overflow-hidden rounded-sm border border-white"
             >
               <Image
                 src="https://images.pexels.com/photos/8482823/pexels-photo-8482823.jpeg"
                 alt="Azcon Technical Leadership"
                 fill
-                className="object-cover transition-transform duration-1000 hover:scale-105"
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="absolute -bottom-12 -right-6 md:-right-12 bg-[#0A192F] p-10 md:p-14 shadow-[20px_20px_60px_rgba(0,0,0,0.3)] border-b-4 border-[#26C6DA]"
+            {/* Smaller 18 Years badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="absolute -bottom-6 -right-6 bg-primary p-6 md:p-8 shadow-xl border-b-4 border-accent z-20"
             >
-              <div className="relative">
-                <p className="text-[#26C6DA] font-black text-6xl mb-1 italic leading-none tracking-tighter">
-                  {t('Edge.StatsPrefix')}
-                </p>
-                <p className="text-white text-[10px] font-bold uppercase tracking-[0.4em] leading-relaxed">
-                  {t('Edge.StatsLabel')}
-                </p>
-              </div>
+              <p className="text-accent font-bold text-4xl italic leading-none">
+                {t("Edge.StatsPrefix")}
+              </p>
+              <p className="text-white text-[10px] font-semibold uppercase tracking-widest">
+                {t("Edge.StatsLabel")}
+              </p>
             </motion.div>
           </div>
 
-          <div className="space-y-10 lg:pl-10">
-            <div className="space-y-4">
+          <div className="space-y-12">
+            <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <span className="w-10 h-[1px] bg-[#26C6DA]"></span>
-                <span className="text-[#26C6DA] text-[11px] font-extrabold uppercase tracking-[0.5em]">
-                  {t('Edge.Label')}
+                <span className="w-12 h-[2px] bg-[#26C6DA]"></span>
+                <span className="text-[#26C6DA] text-xs font-black uppercase tracking-[0.4em]">
+                  {t("Edge.Label")}
                 </span>
               </div>
-              
-              <h2 className="text-4xl md:text-6xl font-black text-[#0A192F] tracking-tighter uppercase leading-[0.9] italic">
-                {t.rich('Edge.Title', {
-                  italic: (chunks) => <span className="not-italic text-[#26C6DA] drop-shadow-sm">{chunks}</span>
+
+              <h2 className="text-5xl md:text-7xl font-black text-[#0A192F] tracking-tighter uppercase leading-[0.9]">
+                {t.rich("Edge.Title", {
+                  italic: (chunks) => (
+                    <span className="text-[#26C6DA] italic">{chunks}</span>
+                  ),
                 })}
               </h2>
             </div>
 
-            <div className="space-y-8 text-gray-500 text-lg leading-relaxed max-w-lg">
-              <p>{t('Edge.Description')}</p>
-            </div>
+            <p className="text-[#486581] text-lg leading-relaxed font-medium">
+              {t("Edge.Description")}
+            </p>
 
-            <div className="pt-4">
-              <button className="text-[#0A192F] font-black text-xs uppercase tracking-[0.3em] hover:text-[#26C6DA] transition-colors border-b border-[#0A192F] pb-2">
-                {t('Edge.Methodology')}
-              </button>
-            </div>
+            <button className="group flex items-center gap-4 text-[#0A192F] font-black text-xs uppercase tracking-[0.3em] transition-all">
+              <span className="border-b-2 border-[#0A192F] pb-1 group-hover:text-[#26C6DA] group-hover:border-[#26C6DA] transition-all">
+                {t("Edge.Methodology")}
+              </span>
+              <span className="text-[#26C6DA] text-xl group-hover:translate-x-2 transition-transform">
+                →
+              </span>
+            </button>
           </div>
         </div>
       </SectionWrapper>
 
-      <SectionWrapper className="bg-gray-50">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-3xl md:text-5xl font-black text-[#0A192F] tracking-tighter uppercase italic">
-            {t.rich('Protocols.Title', {
-              italic: (chunks) => <span className="text-[#26C6DA] not-italic">{chunks}</span>
-            })}
-          </h2>
-          <div className="h-1 w-20 bg-[#26C6DA] mx-auto mt-6"></div>
-        </div>
-        <div className="grid md:grid-cols-3 gap-0">
-          <ValueCard
-            label={t('Protocols.P1.Label')}
-            title={t('Protocols.P1.Title')}
-            desc={t('Protocols.P1.Description')}
-          />
-          <ValueCard
-            label={t('Protocols.P2.Label')}
-            title={t('Protocols.P2.Title')}
-            desc={t('Protocols.P2.Description')}
-          />
-          <ValueCard
-            label={t('Protocols.P3.Label')}
-            title={t('Protocols.P3.Title')}
-            desc={t('Protocols.P3.Description')}
-          />
-        </div>
-      </SectionWrapper>
+    <SectionWrapper className="bg-gray-50 overflow-hidden !py-24">
+  <div className="max-w-6xl mx-auto space-y-24">
 
-      <SectionWrapper className="!p-0 bg-[#0A192F] overflow-hidden">
-        <div className="grid lg:grid-cols-2">
-          <div className="p-16 md:p-24 flex flex-col justify-center space-y-12">
-            <div>
-              <h3 className="text-[#26C6DA] text-3xl font-black uppercase italic tracking-tighter mb-4">
-                {t('VisionMission.VisionTitle')}
-              </h3>
-              <p className="text-gray-400 text-sm leading-loose max-w-md">
-                {t('VisionMission.VisionText')}
-              </p>
-            </div>
-            <div>
-              <h3 className="text-[#26C6DA] text-3xl font-black uppercase italic tracking-tighter mb-4">
-                {t('VisionMission.MissionTitle')}
-              </h3>
-              <p className="text-gray-400 text-sm leading-loose max-w-md">
-                {t('VisionMission.MissionText')}
-              </p>
-            </div>
-          </div>
-          <div className="relative h-[400px] lg:h-auto min-h-[500px]">
-            <Image
-              src="/service_5.jpg"
-              alt="Engineering blueprint"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[#0A192F]/40 mix-blend-multiply"></div>
-          </div>
-        </div>
-      </SectionWrapper>
+    {/* --- VISION BLOCK --- */}
+    <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 lg:gap-20 items-center">
 
-      <div className="bg-[#26C6DA] py-20 text-center">
-        <div className="container mx-auto px-6">
-          <h2 className="text-[#0A192F] text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 italic">
-            {t('FinalCTA.Title')}
-          </h2>
-          <Link
-            href="/contact"
-            className="bg-[#0A192F] text-white px-12 py-5 font-black uppercase text-xs tracking-widest hover:bg-white hover:text-[#0A192F] transition-all duration-500 shadow-2xl"
-          >
-            {t('FinalCTA.Button')}
-          </Link>
-        </div>
-      </div>
+      {/* Icon */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="relative w-40 h-40 md:w-48 md:h-48 rounded-xl border border-[#26C6DA]/20 bg-[#0D2137] flex items-center justify-center group"
+      >
+        <div
+          className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity"
+          style={{
+            backgroundImage: "radial-gradient(#26C6DA 1px, transparent 1px)",
+            backgroundSize: "15px 15px",
+          }}
+        />
+        <LuEye className="w-16 h-16 md:w-20 md:h-20 text-[#26C6DA] relative z-10 transition-transform duration-500 group-hover:scale-110" />
+        <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-[#26C6DA]" />
+      </motion.div>
+
+      {/* Content */}
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="space-y-4"
+      >
+        <h3 className="text-4xl md:text-5xl font-black text-[#26C6DA] uppercase tracking-tighter ">
+          {t("VisionMission.VisionTitle")}
+        </h3>
+        <p className="text-lg md:text-xl leading-relaxed font-medium max-w-4xl">
+          {t("VisionMission.VisionText")}
+        </p>
+      </motion.div>
+    </div>
+
+    {/* --- MISSION BLOCK --- */}
+    <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 lg:gap-20 items-center">
+
+      {/* Icon */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="relative w-40 h-40 md:w-48 md:h-48 rounded-xl border border-[#26C6DA]/20 bg-[#0D2137] flex items-center justify-center group"
+      >
+      
+        <LuTarget className="w-16 h-16 md:w-20 md:h-20 text-[#26C6DA] relative z-10 transition-transform duration-500 group-hover:rotate-12" />
+        <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-[#26C6DA]" />
+      </motion.div>
+
+      {/* Content */}
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="space-y-4"
+      >
+        <h3 className="text-4xl md:text-5xl font-black text-[#26C6DA] uppercase tracking-tighter ">
+          {t("VisionMission.MissionTitle")}
+        </h3>
+        <p className=" text-lg md:text-xl leading-relaxed font-medium max-w-4xl">
+          {t("VisionMission.MissionText")}
+        </p>
+      </motion.div>
+    </div>
+
+  </div>
+</SectionWrapper>
+
+
+      <CTA/>
     </>
   );
 };

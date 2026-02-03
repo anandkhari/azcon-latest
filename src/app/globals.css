@@ -1,69 +1,78 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0f4c81;
-  --color-primary-light: #1b6ca8;
-  --color-accent: #87ceeb; /* Light Sky Blue */
+  /* 🎨 Colors */
+ --color-primary: #0A192F;
+  --color-secondary: #102A43;
+  --color-primary-light: #1e3558;
+  --color-accent: #26C6DA;
   --color-text-base: #333333;
   --color-text-muted: #666666;
   --color-background: #ffffff;
   --color-surface: #f8f9fa;
 
-  --font-family-sans: theme(fontFamily.sans);
-  --font-family-serif: theme(fontFamily.serif);
+  /* 🧠 Fonts (Next.js variables) */
+  --font-heading: var(--font-inter);
+  --font-body: var(--font-poppins);
 
+  /* 📐 Radius */
   --border-radius-md: 0.375rem;
   --border-radius-lg: 0.5rem;
-  
-  /* Animation timing variables */
+
+  /* ⏱ Animation */
   --duration-fast: 200ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
   --duration-slower: 700ms;
-  
-  /* Custom easing functions */
+
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
-  
-  /* Respect user's motion preferences */
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
   }
 
+  /* 📄 Body — Poppins */
   body {
-    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-family: var(--font-body), system-ui, sans-serif;
+    color: var(--color-text-base);
+    background: var(--color-background);
   }
 
+  /* 🏗 Headings — Inter */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-primary;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
   }
 
-  h1 { @apply text-4xl md:text-5xl; }
-  h2 { @apply text-3xl md:text-4xl; }
-  h3 { @apply text-2xl; }
+  h1 { @apply text-5xl md:text-6xl font-bold leading-tight; }
+  h2 { @apply text-3xl md:text-4xl font-semibold leading-snug; }
+  h3 { @apply text-xl md:text-2xl font-semibold; }
+  h4 { @apply text-lg font-medium; }
 
+  /* 📃 Paragraphs */
   p {
-    @apply text-text-muted leading-relaxed;
+    @apply text-base md:text-lg leading-relaxed text-text-muted;
   }
 
+  /* 🔗 Links */
   a {
     @apply text-primary hover:text-primary-light transition-colors;
   }
 }
+
 
 /* Reusable animation keyframes */
 @keyframes fadeInUp {
