@@ -8,5 +8,5 @@ export const config = {
   // - … if they contain a dot, e.g. `favicon.ico`
   // - node_modules
   // - any system files (e.g. `_next`)
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!api|_next|_vercel|.*\\..*|admin).*)']
 };

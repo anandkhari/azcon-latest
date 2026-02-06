@@ -226,7 +226,11 @@ export default function HomeClient() {
       {/* Mobile-only header (appears since the image box is hidden) */}
       <div className="lg:hidden mb-10">
          <span className="text-[#51888f] font-black uppercase tracking-[0.2em] text-[10px] mb-2 block">{t("Assistance.Label")}</span>
-         <h2 className="text-3xl font-black text-[#0A192F] uppercase tracking-tighter">{t("Assistance.Title")}</h2>
+         <h2 className="text-3xl font-black text-[#0A192F] uppercase tracking-tighter">
+           {t.rich("Assistance.Title", {
+             italic: (chunks) => <span className="text-[#26C6DA] italic">{chunks}</span>,
+           })}
+         </h2>
       </div>
 
       {["0", "1", "2", "3", "4"].map((idx) => (
