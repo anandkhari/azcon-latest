@@ -8,10 +8,15 @@ import { motion } from "framer-motion";
 import SectionWrapper from "@/components/SectionWrapper";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { translateText } from "@/lib/translate";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BlogSection() {
+  const { language } = useLanguage();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [translatedById, setTranslatedById] = useState({});
+  const [translating, setTranslating] = useState(false);
 
   useEffect(() => {
     const q = collection(db, "blogPosts");
@@ -37,6 +42,37 @@ export default function BlogSection() {
     return () => unsub();
   }, []);
 
+  useEffect(() => {
+    let isActive = true;
+
+    const runTranslation = async () => {
+      if (language !== "ar" || posts.length === 0) return;
+      setTranslating(true);
+
+      const nextMap = { ...translatedById };
+
+      for (const post of posts) {
+        if (nextMap[post.id]) continue;
+
+        const [tTitle, tExcerpt] = await Promise.all([
+          translateText(post.title || "", "ar"),
+          translateText(post.excerpt || "", "ar"),
+        ]);
+
+        if (!isActive) return;
+        nextMap[post.id] = { title: tTitle, excerpt: tExcerpt };
+        setTranslatedById({ ...nextMap });
+      }
+
+      if (isActive) setTranslating(false);
+    };
+
+    runTranslation();
+    return () => {
+      isActive = false;
+    };
+  }, [language, posts, translatedById]);
+
   const formattedPosts = useMemo(() => {
     const formatter = new Intl.DateTimeFormat(undefined, {
       year: "numeric",
@@ -59,8 +95,16 @@ export default function BlogSection() {
           post.coverImage ||
           "https://images.unsplash.com/photo-1581094794329-c8112a4e5190?auto=format&fit=crop&q=80",
         displayCategory: post.category || "Azcon Insights",
+        displayTitle:
+          language === "ar"
+            ? translatedById[post.id]?.title || post.title
+            : post.title,
+        displayExcerpt:
+          language === "ar"
+            ? translatedById[post.id]?.excerpt || post.excerpt
+            : post.excerpt,
       }));
-  }, [posts]);
+  }, [posts, language, translatedById]);
 
   return (
     <>
@@ -108,7 +152,10 @@ export default function BlogSection() {
 
       {/* ===== BLOG GRID ===== */}
       <SectionWrapper className="bg-[#F8FAFC] py-32">
-        <div className="container max-w-7xl mx-auto px-6">
+        <div
+          className="container max-w-7xl mx-auto px-6"
+          dir={language === "ar" ? "rtl" : "ltr"}
+        >
           {/* Blog Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {loading
@@ -134,7 +181,7 @@ export default function BlogSection() {
               : formattedPosts.map((post) => (
                   <Link
                     key={post.id}
-                   href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug || post.id}`}
                     className="group cursor-pointer"
                   >
                     <article>
@@ -162,11 +209,11 @@ export default function BlogSection() {
                         </div>
 
                         <h3 className="text-xl font-black text-[#0A192F] leading-tight uppercase  group-hover:text-[#26C6DA] transition-colors">
-                          {post.title}
+                          {post.displayTitle}
                         </h3>
 
                         <p className="text-slate-500 text-sm leading-relaxed line-clamp-2">
-                          {post.excerpt}
+                          {post.displayExcerpt}
                         </p>
 
                         <div className="pt-4 flex items-center gap-2 group/link">
@@ -187,6 +234,11 @@ export default function BlogSection() {
                   </Link>
                 ))}
           </div>
+          {translating && language === "ar" && (
+            <p className="mt-8 text-center text-[10px] uppercase tracking-[0.3em] text-gray-400">
+              Translating...
+            </p>
+          )}
         </div>
       </SectionWrapper>
     </>

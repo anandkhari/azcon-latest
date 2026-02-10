@@ -6,15 +6,24 @@ import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import SectionWrapper from "@/components/SectionWrapper";
 import { ArrowUpRight } from "lucide-react";
+import { translateText } from "@/lib/translate";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BlogPostPage() {
   const router = useRouter();
   const params = useParams();
   const slug = useMemo(() => params?.slug, [params]);
+  const { language } = useLanguage();
 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [translated, setTranslated] = useState({
+    title: "",
+    excerpt: "",
+    content: "",
+  });
+  const [translating, setTranslating] = useState(false);
 
   useEffect(() => {
     if (!slug || typeof slug !== "string") return;
@@ -52,6 +61,34 @@ export default function BlogPostPage() {
     fetchPost();
   }, [slug]);
 
+  useEffect(() => {
+    let isActive = true;
+
+    const runTranslation = async () => {
+      if (language !== "ar" || !post) return;
+      setTranslating(true);
+
+      const [tTitle, tExcerpt, tContent] = await Promise.all([
+        translateText(post.title || "", "ar"),
+        translateText(post.excerpt || "", "ar"),
+        translateText(post.content || "", "ar"),
+      ]);
+
+      if (!isActive) return;
+      setTranslated({
+        title: tTitle,
+        excerpt: tExcerpt,
+        content: tContent,
+      });
+      setTranslating(false);
+    };
+
+    runTranslation();
+    return () => {
+      isActive = false;
+    };
+  }, [language, post]);
+
   const displayDate = useMemo(() => {
     if (!post?.createdAt?.toDate) return "Recent";
     try {
@@ -64,6 +101,13 @@ export default function BlogPostPage() {
       return post.createdAt?.toDate?.().toDateString?.() || "Recent";
     }
   }, [post]);
+
+  const displayTitle =
+    language === "ar" ? translated.title || post?.title : post?.title;
+  const displayExcerpt =
+    language === "ar" ? translated.excerpt || post?.excerpt : post?.excerpt;
+  const displayContent =
+    language === "ar" ? translated.content || post?.content : post?.content;
 
   if (loading || !slug) {
     return (
@@ -115,7 +159,16 @@ export default function BlogPostPage() {
 
   return (
     <SectionWrapper className="bg-white min-h-screen py-24">
-      <div className="max-w-4xl mx-auto px-6">
+      <div
+        className="max-w-4xl mx-auto px-6"
+        dir={language === "ar" ? "rtl" : "ltr"}
+      >
+        {translating && language === "ar" && (
+          <p className="mb-8 text-right text-[10px] uppercase tracking-[0.3em] text-gray-400">
+            Translating...
+          </p>
+        )}
+
         {/* COVER IMAGE */}
         {post.coverImage && (
           <div className="mb-16 rounded-2xl overflow-hidden shadow-xl">
@@ -133,21 +186,21 @@ export default function BlogPostPage() {
         </p>
 
         <h1 className="text-4xl md:text-5xl font-black text-[#0A192F] uppercase tracking-tight leading-tight mb-6">
-          {post.title}
+          {displayTitle}
         </h1>
 
         <p className="text-gray-500 mb-12 text-sm">{displayDate}</p>
 
         {/* EXCERPT */}
-        {post.excerpt && (
+        {displayExcerpt && (
           <p className="text-lg text-gray-600 leading-relaxed mb-12 border-l-4 border-[#26C6DA] pl-6 italic">
-            {post.excerpt}
+            {displayExcerpt}
           </p>
         )}
 
         {/* CONTENT */}
         <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed whitespace-pre-line">
-          {post.content}
+          {displayContent}
         </div>
       </div>
     </SectionWrapper>

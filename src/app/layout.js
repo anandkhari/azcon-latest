@@ -1,7 +1,7 @@
 import "./globals.css";
 import { cookies } from "next/headers";
-import { routing } from "@/i18n/routing";
 import { Inter, Poppins } from "next/font/google";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,14 +20,16 @@ const poppins = Poppins({
 export default async function RootLayout({ children }) {
   const cookieStore = await cookies();
   const localeCookie = cookieStore.get("NEXT_LOCALE")?.value;
-  const locale = routing.locales.includes(localeCookie)
-    ? localeCookie
-    : routing.defaultLocale;
+  const locales = ["en", "ar"];
+  const defaultLocale = "en";
+  const locale = locales.includes(localeCookie) ? localeCookie : defaultLocale;
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
     <html lang={locale} dir={dir} className={`${inter.variable} ${poppins.variable}`}>
-      <body className="antialiased font-poppins">{children}</body>
+      <body className="antialiased font-poppins">
+        <LanguageProvider initialLang={locale}>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

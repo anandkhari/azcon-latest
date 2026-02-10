@@ -132,7 +132,7 @@ const Header = () => {
 
         {/* 3. Main Navigation Area */}
         <div
-          className={`container mx-auto px-6 transition-all duration-300 relative z-30 ${
+          className={`max-w-7xl container mx-auto px-2 transition-all duration-300 relative z-30 ${
             isSticky ? "py-2" : "py-6"
           }`}
         >
@@ -195,13 +195,13 @@ const Header = () => {
 
             {/* Contact Button & Mobile Toggle */}
             <div className="flex items-center gap-6">
-              <div className="hidden md:flex items-center gap-6">
+              {/* <div className="hidden md:flex items-center gap-6">
                 <motion.div
                   className={`hidden xl:block text-right ${
                     isSticky ? "text-[#0A192F]" : "text-white"
                   }`}
                 >
-                  <p className="text-[9px] font-black uppercase tracking-[0.3em] opacity-60">HQ Dubai</p>
+                  
                   <p className="text-sm font-black tracking-tighter">info@azconinfra.com</p>
                 </motion.div>
                 <Link
@@ -214,7 +214,7 @@ const Header = () => {
                 >
                   {t("SecureAssessment")}
                 </Link>
-              </div>
+              </div> */}
 
               {/* Mobile Menu Button */}
               <motion.button

@@ -25,7 +25,7 @@ export const services = [
     "Comprehensive facility maintenance services ensuring compliance, safety, and long-term asset performance.",
   description:
     "Azcon provides full-spectrum building maintenance across HVAC, MEP systems, civil works, firefighting, and utilities with 24/7 emergency response and AMC programs across the UAE.",
-  image: "/service.png",
+  image: "/building-maintenace.jpg",
 
   features: [
     { label: "Preventive & corrective maintenance", icon: FaTools },
@@ -66,7 +66,7 @@ export const services = [
   description:
     "Azcon delivers premium turnkey fit-out projects from concept design to final handover. Our services include interior planning, partitions, ceilings, flooring, bespoke joinery, electrical works, HVAC integration, plumbing, and authority-approved execution for high-quality commercial and residential spaces.",
 
-  image: "/service_2.png",
+  image: "/fitoutworks.jpg",
 
   features: [
     { label: "Interior planning & space optimization", icon: FaCouch },
@@ -115,7 +115,7 @@ export const services = [
   description:
     "Azcon delivers complete HVAC engineering solutions including system design, heat load calculations, installation, testing, commissioning, and ongoing maintenance. Our HVAC systems are built for optimal indoor comfort, energy efficiency, and full compliance with UAE regulatory standards for residential, commercial, and industrial facilities.",
 
-  image: "/service_3.png",
+  image: "/hvac.jpg",
 
   features: [
     { label: "HVAC system design & heat load calculations", icon: FaWind },
@@ -161,7 +161,7 @@ export const services = [
     "Complete electrical engineering, installation, and compliance services.",
   description:
     "Azcon handles power systems, lighting, ELV, CCTV, structured cabling, testing, and long-term maintenance.",
-  image: "/service_4.jpeg",
+  image: "/electrical.png",
 
   features: [
     { label: "Power distribution systems", icon: FaPlug },
@@ -206,7 +206,7 @@ export const services = [
     "Professional plumbing installation and maintenance services.",
   description:
     "We design and maintain water supply, drainage, and sanitary systems for all property types.",
-  image: "/service_plumbing.jpg",
+  image: "/plumbing.jpg",
 
   features: [
     { label: "Water supply systems", icon: FaWater },
@@ -251,7 +251,7 @@ export const services = [
     "Structural steel fabrication and custom metal works.",
   description:
     "We fabricate, coat, and install steel structures for industrial and commercial projects.",
-  image: "/service_5.jpg",
+  image: "/metal-fabrications.jpg",
 
   features: [
     { label: "Structural steel fabrication", icon: FaIndustry },
@@ -296,7 +296,7 @@ export const services = [
     "Long-term public and private infrastructure maintenance services.",
   description:
     "We maintain roads, drainage networks, utilities, water systems, landscaping, and environmental assets.",
-  image: "/service_6.jpg",
+  image: "/infrastructure.jpg",
 
   features: [
     { label: "Road & pavement maintenance", icon: FaRoad },

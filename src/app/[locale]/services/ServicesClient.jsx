@@ -7,13 +7,12 @@ import CTA from "@/components/CTA";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { services as azconServices } from "@/data/services";
+import useTranslatedServices from "@/hooks/useTranslatedServices";
 
 const ServicesClient = () => {
-  // Use 't' for the general service data
-  const t = useTranslations("Services");
   // Use 'tp' for specific page-level content (Titles/Subtitles)
   const tp = useTranslations("ServicesPage");
+  const services = useTranslatedServices();
 
   return (
     <>
@@ -72,13 +71,13 @@ const ServicesClient = () => {
       <SectionWrapper className="bg-gray-50 !py-24">
         {/* Blueprint Grid Background for the wrapper */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-          {azconServices.map((service) => (
+          {services.map((service) => (
             <ServiceCard
               key={service.slug}
               service={{
                 ...service,
-                title: t(`${service.slug}.title`),
-                description: t(`${service.slug}.shortDescription`),
+                title: service.title,
+                description: service.description,
               }}
             />
           ))}
@@ -92,3 +91,4 @@ const ServicesClient = () => {
 };
 
 export default ServicesClient;
+

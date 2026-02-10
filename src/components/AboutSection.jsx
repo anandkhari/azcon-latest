@@ -21,7 +21,7 @@ const AboutSection = () => {
   return (
     <SectionWrapper className="bg-[#F7F9FC] overflow-hidden">
       <motion.div
-        className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-40 items-center"
+        className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }} // Adjusted margin for mobile triggers
@@ -58,7 +58,7 @@ const AboutSection = () => {
           <motion.h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-[#102A43] leading-tight tracking-tight mb-6">
             {t.rich("Title", {
               br: () => <br className="hidden md:block" />,
-              italic: (chunks) => <span className="text-[#26C6DA] italic">{chunks}</span>
+              italic: (chunks) => <span className="text-[#26C6DA] ">{chunks}</span>
             })}
           </motion.h2>
 
@@ -116,7 +116,7 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="absolute -bottom-4 -right-2 md:-bottom-8 md:-right-8 bg-white p-5 md:p-8 rounded-xl shadow-2xl z-20 border-b-4 border-[#26C6DA]"
           >
-            <p className="text-[#0A192F] font-black text-2xl md:text-3xl italic">15+</p>
+            <p className="text-[#0A192F] font-black text-2xl md:text-3xl italic">12+</p>
             <p className="text-gray-500 text-[10px] uppercase tracking-widest font-bold">Years Experience</p>
           </motion.div>
         </motion.div>

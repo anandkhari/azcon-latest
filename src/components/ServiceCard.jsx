@@ -38,7 +38,7 @@ const ServiceCard = ({ service }) => {
           </h3>
 
           <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 group-hover:text-gray-600 transition-colors">
-            {service.shortDescription}
+            {service.description || service.shortDescription}
           </p>
 
           <div className="flex items-center justify-between border-t border-gray-100 pt-6 mt-auto">

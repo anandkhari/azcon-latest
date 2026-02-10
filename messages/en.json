@@ -55,7 +55,7 @@
   "HomePage": {
     "Advantage": {
       "Label": "The Azcon Advantage",
-      "Title": "Engineered for <italic>Reliability</italic>",
+      "Title": "Why Choose <italic>Azcon</italic>",
       "Description": "Consistently exceeding client expectations through technical mastery and strong management.",
       "Cards": [
         {
@@ -164,8 +164,8 @@
         "description": "Trusted by leading hotels, clinics, and industrial facilities. Our 13+ years of UAE expertise ensures your infrastructure operates at peak performance."
       }
     ],
-    "ViewScope": "View Scope of Work",
-    "RequestAssessment": "Request Assessment"
+    "ViewScope": "Our Services",
+    "RequestAssessment": "Contact Us"
   },
   "About": {
     "Title": "Engineering <italic>Aesthetic</italic> Perfection",
@@ -174,7 +174,7 @@
     "LearnMore": "Learn More About Us"
   },
  "Services": {
-    "Title": "Technical <span>Scope</span>",
+    "Title": "Our Scope  <span>of</span> Work",
     "Subtitle": "Expertise",
     "Description": "Delivering excellence across specialized technical domains with cutting-edge solutions",
     "TechnicalSpecification": "Technical Specification",
@@ -339,8 +339,8 @@
       "Label": "The Azcon Edge",
       "Title": "Legacy In <italic>Precision</italic>",
       "Description": "Founded on the principle that technical integrity and aesthetic sophistication are inseparable. We don't just maintain; we optimize. Today, Azcon powers the infrastructure of leading hotels, industrial hubs, and luxury estates with a 100+ strong workforce of authorized experts.",
-      "Methodology": "Our Methodology →",
-      "StatsPrefix": "18+",
+      "Methodology": "Connect With Us →",
+      "StatsPrefix": "12+",
       "StatsLabel": "Years of UAE Engineering Mastery"
     },
     "Protocols": {
@@ -439,12 +439,16 @@
       "Email": "info@azconinfra.com"
     },
     "Sectors": [
-      "Hotels & Clinics",
-      "Factories & Gyms",
-      "Luxury Villas",
+      "Commercial Buildings",
       "Labour Accommodations",
+      "Luxury Villas",
       "Shops & Restaurants",
-      "Commercial Buildings"
+      "Hotels & Clinics",
+      "Factories & Gyms"
+      
+     
+      
+     
     ],
     "ServiceNames": {
       "BuildingMaintenance": "Building Maintenance",

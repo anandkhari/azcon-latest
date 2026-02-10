@@ -14,8 +14,7 @@ const Footer = () => {
 
   const socialLinks = [
     { name: 'LinkedIn', icon: <FaLinkedinIn size={18} />, href: '#' },
-    { name: 'Facebook', icon: <FaFacebookF size={18} />, href: '#' },
-    { name: 'Instagram', icon: <FaInstagram size={18} />, href: '#' },
+ 
     { name: 'Gmail', icon: <IoMailOutline size={20} />, href: `mailto:${t("Contact.Email")}` },
   ];
 

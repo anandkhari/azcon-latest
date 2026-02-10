@@ -64,10 +64,10 @@ const AboutClient = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="text-3xl md:text-6xl lg:text-6xl font-black text-white tracking-tighter uppercase mb-8 leading-[0.9]">
+            <h1 className="text-3xl md:text-6xl lg:text-6xl font-semibold text-white tracking-tighter  mb-8 leading-[0.9]">
               {t.rich("Hero.Title", {
                 italic: (chunks) => (
-                  <span className="text-[#26C6DA] italic">{chunks}</span>
+                  <span className="text-[#26C6DA] ">{chunks}</span>
                 ),
               })}
             </h1>
@@ -85,96 +85,97 @@ const AboutClient = () => {
 
       {/* --- THE EDGE SECTION --- */}
       <SectionWrapper className="bg-white">
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
-          <div className="relative h-full">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative h-full shadow-2xl overflow-hidden rounded-sm border border-white"
-            >
-              <Image
-                src="https://images.pexels.com/photos/8482823/pexels-photo-8482823.jpeg"
-                alt="Azcon Technical Leadership"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
-            </motion.div>
-
-            {/* Smaller 18 Years badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="absolute -bottom-6 -right-6 bg-primary p-6 md:p-8 shadow-xl border-b-4 border-accent z-20"
-            >
-              <p className="text-accent font-bold text-4xl italic leading-none">
-                {t("Edge.StatsPrefix")}
-              </p>
-              <p className="text-white text-[10px] font-semibold uppercase tracking-widest">
-                {t("Edge.StatsLabel")}
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="space-y-12">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <span className="w-12 h-[2px] bg-[#26C6DA]"></span>
-                <span className="text-[#26C6DA] text-xs font-black uppercase tracking-[0.4em]">
-                  {t("Edge.Label")}
-                </span>
-              </div>
-
-              <h2 className="text-5xl md:text-7xl font-black text-[#0A192F] tracking-tighter uppercase leading-[0.9]">
-                {t.rich("Edge.Title", {
-                  italic: (chunks) => (
-                    <span className="text-[#26C6DA] italic">{chunks}</span>
-                  ),
-                })}
-              </h2>
-            </div>
-
-            <p className="text-[#486581] text-lg leading-relaxed font-medium">
-              {t("Edge.Description")}
-            </p>
-
-            <button className="group flex items-center gap-4 text-[#0A192F] font-black text-xs uppercase tracking-[0.3em] transition-all">
-              <span className="border-b-2 border-[#0A192F] pb-1 group-hover:text-[#26C6DA] group-hover:border-[#26C6DA] transition-all">
-                {t("Edge.Methodology")}
-              </span>
-              <span className="text-[#26C6DA] text-xl group-hover:translate-x-2 transition-transform">
-                →
-              </span>
-            </button>
-          </div>
-        </div>
-      </SectionWrapper>
-
-    <SectionWrapper className="bg-gray-50 overflow-hidden !py-24">
-  <div className="max-w-6xl mx-auto space-y-24">
-
-    {/* --- VISION BLOCK --- */}
-    <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 lg:gap-20 items-center">
-
-      {/* Icon */}
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 lg:gap-24 items-center">
+    
+    {/* IMAGE COLUMN */}
+    <div className="relative h-full">
       <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="relative h-full shadow-2xl overflow-hidden rounded-sm border border-white"
+      >
+        <Image
+          src="https://images.pexels.com/photos/8482823/pexels-photo-8482823.jpeg"
+          alt="Azcon Technical Leadership"
+          fill
+          className="object-cover rounded-2xl"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
+      </motion.div>
+
+      {/* 18+ Years Badge */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        className="absolute -bottom-6 -right-6 bg-primary p-6 md:p-8 shadow-xl border-b-4 border-accent z-20"
+      >
+        <p className="text-accent font-bold text-4xl leading-none">
+          {t("Edge.StatsPrefix")}
+        </p>
+        <p className="text-white text-[10px] font-semibold uppercase tracking-widest">
+          {t("Edge.StatsLabel")}
+        </p>
+      </motion.div>
+    </div>
+
+    {/* CONTENT COLUMN */}
+    <div className="space-y-12">
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <span className="w-12 h-[2px] bg-[#26C6DA]" />
+          <span className="text-[#26C6DA] text-xs font-semibold tracking-[0.4em] uppercase">
+            {t("Edge.Label")}
+          </span>
+        </div>
+
+        <h2 className="text-5xl md:text-7xl font-semibold text-[#0A192F] tracking-tighter leading-[1.2]">
+          {t.rich("Edge.Title", {
+            italic: (chunks) => (
+              <span className="text-[#26C6DA]">{chunks}</span>
+            ),
+          })}
+        </h2>
+      </div>
+
+      <p className="text-[#486581] text-lg leading-relaxed font-medium">
+        {t("Edge.Description")}
+      </p>
+
+      {/* CTA → CONTACT */}
+      <Link
+        href="/contact"
+        className="group inline-flex items-center gap-4 text-[#0A192F] font-black text-xs uppercase tracking-[0.3em] transition-all"
+      >
+        <span className="border-b-2 border-[#0A192F] pb-1 group-hover:text-[#26C6DA] group-hover:border-[#26C6DA] transition-all">
+          {t("Edge.Methodology")}
+        </span>
+        <span className="text-[#26C6DA] text-xl group-hover:translate-x-2 transition-transform">
+          →
+        </span>
+      </Link>
+    </div>
+  </div>
+</SectionWrapper>
+
+
+   <SectionWrapper className="bg-gray-50 overflow-hidden py-24">
+  <div className="max-w-7xl mx-auto space-y-28 px-4">
+
+    {/* ================= VISION ================= */}
+    <div className="grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-12 lg:gap-20 items-start">
+
+      {/* Icon Block */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="relative w-40 h-40 md:w-48 md:h-48 rounded-xl border border-[#26C6DA]/20 bg-[#0D2137] flex items-center justify-center group"
+        className="relative w-36 h-36 md:w-44 md:h-44 bg-[#0A192F] border border-[#26C6DA]/30 flex items-center justify-center"
       >
-        <div
-          className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity"
-          style={{
-            backgroundImage: "radial-gradient(#26C6DA 1px, transparent 1px)",
-            backgroundSize: "15px 15px",
-          }}
-        />
-        <LuEye className="w-16 h-16 md:w-20 md:h-20 text-[#26C6DA] relative z-10 transition-transform duration-500 group-hover:scale-110" />
-        <div className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-[#26C6DA]" />
+        <LuEye className="w-14 h-14 md:w-16 md:h-16 text-[#26C6DA]" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,#26C6DA_1px,transparent_1px)] opacity-10 bg-[length:14px_14px]" />
       </motion.div>
 
       {/* Content */}
@@ -182,30 +183,33 @@ const AboutClient = () => {
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="space-y-4"
+        className="space-y-6"
       >
-        <h3 className="text-4xl md:text-5xl font-black text-[#26C6DA] uppercase tracking-tighter ">
+        <span className="text-[#26C6DA] text-xs font-bold tracking-[0.3em] uppercase">
+          Vision
+        </span>
+
+        <h3 className="text-3xl md:text-4xl font-bold text-[#0A192F] tracking-tight">
           {t("VisionMission.VisionTitle")}
         </h3>
-        <p className="text-lg md:text-xl leading-relaxed font-medium max-w-4xl">
+
+        <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-4xl font-medium">
           {t("VisionMission.VisionText")}
         </p>
       </motion.div>
     </div>
 
-    {/* --- MISSION BLOCK --- */}
-    <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 lg:gap-20 items-center">
+    {/* ================= MISSION ================= */}
+    <div className="grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-12 lg:gap-20 items-start">
 
-      {/* Icon */}
+      {/* Icon Block */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="relative w-40 h-40 md:w-48 md:h-48 rounded-xl border border-[#26C6DA]/20 bg-[#0D2137] flex items-center justify-center group"
+        className="relative w-36 h-36 md:w-44 md:h-44 bg-[#0A192F] border border-[#26C6DA]/30 flex items-center justify-center"
       >
-      
-        <LuTarget className="w-16 h-16 md:w-20 md:h-20 text-[#26C6DA] relative z-10 transition-transform duration-500 group-hover:rotate-12" />
-        <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-[#26C6DA]" />
+        <LuTarget className="w-14 h-14 md:w-16 md:h-16 text-[#26C6DA]" />
       </motion.div>
 
       {/* Content */}
@@ -213,12 +217,17 @@ const AboutClient = () => {
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="space-y-4"
+        className="space-y-6"
       >
-        <h3 className="text-4xl md:text-5xl font-black text-[#26C6DA] uppercase tracking-tighter ">
+        <span className="text-[#26C6DA] text-xs font-bold tracking-[0.3em] uppercase">
+          Mission
+        </span>
+
+        <h3 className="text-3xl md:text-4xl font-bold text-[#0A192F] tracking-tight">
           {t("VisionMission.MissionTitle")}
         </h3>
-        <p className=" text-lg md:text-xl leading-relaxed font-medium max-w-4xl">
+
+        <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-4xl font-medium">
           {t("VisionMission.MissionText")}
         </p>
       </motion.div>
@@ -226,6 +235,7 @@ const AboutClient = () => {
 
   </div>
 </SectionWrapper>
+
 
 
       <CTA/>

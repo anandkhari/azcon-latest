@@ -25,25 +25,25 @@ export default function HomePage() {
     { 
       title: "Building Maintenance", 
       description: "Preventive, corrective, and predictive maintenance for all facility types.", 
-      image: "/service.png",
+      image: "/building-maintenance.jpg",
       iconPath: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" 
     },
     { 
       title: "Fit-Out Works", 
       description: "Transforming interior spaces into functional and visually appealing environments.", 
-      image: "/service_2.png",
+      image: "/fitoutworks.jpg",
       iconPath: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" 
     },
     { 
       title: "HVAC Works", 
       description: "Design, installation, and maintenance of heating and cooling systems.", 
-      image: "/service_3.png",
+      image: "/hvac.jpg",
       iconPath: "M9.59 4.59A2 2 0 1111 8H2.41a2 2 0 100 2H11a2 2 0 110 4H2.41a2 2 0 100 2H11a2 2 0 110 4h-1.41a2 2 0 100 2H19a2 2 0 110-4h-1.41a2 2 0 100-2H19a2 2 0 110-4h-1.41a2 2 0 100-2H19a2 2 0 110-4h-9.41z" 
     },
     { 
       title: "Electrical & Plumbing", 
       description: "Comprehensive MEP solutions including 132/11KV substations and piping.", 
-      image: "/service_4.jpeg",
+      image: "/electrical.png",
       iconPath: "M13 10V3L4 14h7v7l9-11h-7z" 
     },
     { 

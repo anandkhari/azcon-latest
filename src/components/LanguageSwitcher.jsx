@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/routing"; 
+import { usePathname, useRouter } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 // --- SVG FLAGS ---
 // 1. UNITED STATES FLAG (ENGLISH)
@@ -33,6 +34,7 @@ export default function LanguageSwitcher() {
   const locale = useLocale(); // 'en' or 'ar'
   const router = useRouter();
   const pathname = usePathname();
+  const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -49,16 +51,23 @@ export default function LanguageSwitcher() {
 
   const handleLanguageChange = (nextLocale) => {
     setIsOpen(false);
+    setLanguage(nextLocale);
     router.replace(pathname, { locale: nextLocale });
   };
 
+  // Keep context in sync with the active locale
+  useEffect(() => {
+    if (locale && locale !== language) {
+      setLanguage(locale);
+    }
+  }, [locale, language, setLanguage]);
+
   // Explicitly determine which flag to show for the MAIN BUTTON
-  const CurrentFlag = locale === 'ar' ? UAEFlag : USFlag;
-  const currentLabel = locale === 'ar' ? 'العربية' : 'English';
+  const CurrentFlag = language === "ar" ? UAEFlag : USFlag;
+  const currentLabel = language === "ar" ? "Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©" : "English";
 
   return (
     <div className="relative z-50" ref={containerRef}>
-      
       {/* TRIGGER BUTTON */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -91,38 +100,38 @@ export default function LanguageSwitcher() {
           >
             {/* OPTION 1: ENGLISH */}
             <button
-              onClick={() => handleLanguageChange('en')}
+              onClick={() => handleLanguageChange("en")}
               className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-[#26C6DA]/20 transition-colors ${
-                locale === 'en' ? "bg-white/5" : ""
+                language === "en" ? "bg-white/5" : ""
               }`}
             >
               <USFlag />
-              <span className={`text-[10px] font-black uppercase tracking-widest flex-1 text-left ${
-                locale === 'en' ? "text-[#26C6DA]" : "text-gray-300"
-              }`}>
+              <span
+                className={`text-[10px] font-black uppercase tracking-widest flex-1 text-left ${
+                  language === "en" ? "text-[#26C6DA]" : "text-gray-300"
+                }`}
+              >
                 English
               </span>
-              {locale === 'en' && (
-                <CheckIcon />
-              )}
+              {language === "en" && <CheckIcon />}
             </button>
 
             {/* OPTION 2: ARABIC */}
             <button
-              onClick={() => handleLanguageChange('ar')}
+              onClick={() => handleLanguageChange("ar")}
               className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-[#26C6DA]/20 transition-colors ${
-                locale === 'ar' ? "bg-white/5" : ""
+                language === "ar" ? "bg-white/5" : ""
               }`}
             >
               <UAEFlag />
-              <span className={`text-[10px] font-black uppercase tracking-widest flex-1 text-left ${
-                locale === 'ar' ? "text-[#26C6DA]" : "text-gray-300"
-              }`}>
-                العربية
+              <span
+                className={`text-[10px] font-black uppercase tracking-widest flex-1 text-left ${
+                  language === "ar" ? "text-[#26C6DA]" : "text-gray-300"
+                }`}
+              >
+                Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©
               </span>
-              {locale === 'ar' && (
-                <CheckIcon />
-              )}
+              {language === "ar" && <CheckIcon />}
             </button>
           </motion.div>
         )}
