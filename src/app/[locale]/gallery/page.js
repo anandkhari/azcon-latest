@@ -7,11 +7,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiExternalLink, FiImage } from "react-icons/fi";
 import Image from "next/image";
 import SectionWrapper from "@/components/SectionWrapper";
+import { translateText } from "@/lib/translate";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PublicGalleryPage() {
+  const { language } = useLanguage();
+
   const [galleryItems, setGalleryItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // ===== HERO TRANSLATION STATE =====
+  const [heroText, setHeroText] = useState({
+    title: "Project Gallery",
+    desc: "A live showcase of Azcon’s latest infrastructure and installations.",
+    projectLabel: "Project",
+    emptyTitle: "Gallery is empty",
+    emptyDesc:
+      "New project images will appear here as soon as they are published.",
+  });
+
+  // ===== FIREBASE LISTENER =====
   useEffect(() => {
     const q = collection(db, "gallery");
     const unsub = onSnapshot(
@@ -30,6 +45,56 @@ export default function PublicGalleryPage() {
 
     return () => unsub();
   }, []);
+
+  // ===== TRANSLATE HERO + STATIC TEXTS =====
+  useEffect(() => {
+    let active = true;
+
+    const runTranslation = async () => {
+      if (language !== "ar") {
+        setHeroText({
+          title: "Project Gallery",
+          desc: "A live showcase of Azcon’s latest infrastructure and installations.",
+          projectLabel: "Project",
+          emptyTitle: "Gallery is empty",
+          emptyDesc:
+            "New project images will appear here as soon as they are published.",
+        });
+        return;
+      }
+
+      const [tTitle, tDesc, tProject, tEmptyTitle, tEmptyDesc] =
+        await Promise.all([
+          translateText("Project Gallery", "ar"),
+          translateText(
+            "A live showcase of Azcon’s latest infrastructure and installations.",
+            "ar"
+          ),
+          translateText("Project", "ar"),
+          translateText("Gallery is empty", "ar"),
+          translateText(
+            "New project images will appear here as soon as they are published.",
+            "ar"
+          ),
+        ]);
+
+      if (!active) return;
+
+      setHeroText({
+        title: tTitle,
+        desc: tDesc,
+        projectLabel: tProject,
+        emptyTitle: tEmptyTitle,
+        emptyDesc: tEmptyDesc,
+      });
+    };
+
+    runTranslation();
+
+    return () => {
+      active = false;
+    };
+  }, [language]);
 
   return (
     <>
@@ -61,11 +126,14 @@ export default function PublicGalleryPage() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-3xl md:text-6xl font-semibold text-white tracking-tighter mb-8 leading-[0.9]">
-              Project <span className="text-[#26C6DA]">Gallery</span>
+              {heroText.title.split(" ")[0]}{" "}
+              <span className="text-[#26C6DA]">
+                {heroText.title.split(" ").slice(1).join(" ")}
+              </span>
             </h1>
 
             <p className="text-gray-200 text-lg md:text-2xl max-w-3xl mx-auto font-light tracking-tight opacity-90">
-              A live showcase of Azcon’s latest infrastructure and installations.
+              {heroText.desc}
             </p>
           </motion.div>
         </div>
@@ -76,8 +144,10 @@ export default function PublicGalleryPage() {
 
       {/* ===== GALLERY CONTENT ===== */}
       <SectionWrapper className="bg-[#f8fafc] min-h-screen py-24">
-        <div className="container mx-auto px-6 max-w-7xl">
-
+        <div
+          className="container mx-auto px-6 max-w-7xl"
+          dir="ltr"   // keep layout stable
+        >
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {Array.from({ length: 8 }).map((_, idx) => (
@@ -111,12 +181,10 @@ export default function PublicGalleryPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                       <div className="flex justify-between items-center transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
                         <div className="flex-1 min-w-0 mr-4">
-                          <p className="text-white text-[10px] font-black uppercase tracking-widest opacity-70 mb-1">
-                            Project
-                          </p>
-                          <p className="text-white text-sm font-bold truncate">
-                            {item.name || "Azcon Project"}
-                          </p>
+                          {/* <p className="text-white text-[10px] font-black uppercase tracking-widest opacity-70 mb-1">
+                            {heroText.projectLabel}
+                          </p> */}
+                       
                         </div>
                         <a
                           href={item.url}
@@ -138,14 +206,11 @@ export default function PublicGalleryPage() {
                 <FiImage className="text-3xl text-gray-400" />
               </div>
               <h3 className="text-xl font-bold text-[#0A192F]">
-                Gallery is empty
+                {heroText.emptyTitle}
               </h3>
-              <p className="text-gray-500 mt-2">
-                New project images will appear here as soon as they are published.
-              </p>
+              <p className="text-gray-500 mt-2">{heroText.emptyDesc}</p>
             </div>
           )}
-
         </div>
       </SectionWrapper>
     </>

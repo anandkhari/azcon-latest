@@ -468,13 +468,41 @@
       "VisionTitle": "The Vision",
       "VisionText": "To be a trusted partner of choice, admired for quality, reliability, and innovation, and for fostering a workplace that empowers our people to grow, perform, and lead with confidence.",
       "MissionTitle": "The Mission",
-      "MissionText": "Delivering flawless maintenance and fit-out services through innovation, a highly skilled workforce, and an uncompromising commitment to client safety."
+      "MissionText": "To deliver reliable, high-quality technical and built-environment solutions through disciplined execution, client-focused partnerships, and empowered teams while upholding integrity, innovation, and sustainability in everything we do."
     },
     "FinalCTA": {
       "Title": "Ready to see technical perfection in action?",
       "Button": "Start Your Inquiry →"
     }
   },
+  "Values": {
+  "label": "Our Values",
+  "title": "Values & <highlight>Commitment</highlight>",
+  "description": "Guided by excellence, integrity, and a people-first philosophy, AZCON Infra delivers dependable engineering solutions that create long-term value and elevate industry standards across the region.",
+  "cards": [
+    {
+      "title": "Deliver Excellence",
+      "desc": "We pursue excellence in every engagement, upholding the highest standards through disciplined execution and precision."
+    },
+    {
+      "title": "Client-Centric Approach",
+      "desc": "We build long-term partnerships by understanding client objectives and delivering tailored, transparent solutions."
+    },
+    {
+      "title": "Empower Our People",
+      "desc": "We foster a supportive environment where individuals are valued, empowered, and encouraged to grow."
+    },
+    {
+      "title": "Embrace Progress",
+      "desc": "We continuously evolve by adopting innovative practices and sustainable engineering methods."
+    },
+    {
+      "title": "Act with Responsibility",
+      "desc": "We operate with integrity and responsibility, contributing positively to industry and community growth."
+    }
+  ]
+}
+,
   "ContactPage": {
     "Hero": {
       "Title": "Contact <italic>Us</italic>",

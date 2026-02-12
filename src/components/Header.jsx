@@ -98,7 +98,15 @@ const Header = () => {
         >
           <div className="flex items-center justify-between">
             {/* LOGO */}
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-3 group">
+              {/* Logo Image */}
+              <img
+                src="/logo-bg.png" // 👈 change to your actual logo path
+                alt="Azcon Infra"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+              />
+
+              {/* Logo Text */}
               <span
                 className={`text-xl sm:text-2xl md:text-3xl font-black tracking-tighter transition-colors ${
                   isSticky ? "text-[#0A192F]" : "text-white"
@@ -145,7 +153,12 @@ const Header = () => {
                 isSticky ? "text-[#0A192F]" : "text-white"
               }`}
             >
-              <svg className="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-7 h-7 sm:w-8 sm:h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeWidth="2.5"
                   strokeLinecap="round"
@@ -178,7 +191,12 @@ const Header = () => {
               </span>
 
               <button onClick={() => setIsMobileMenuOpen(false)}>
-                <svg className="w-9 h-9 text-[#26C6DA]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="w-9 h-9 text-[#26C6DA]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -213,9 +231,7 @@ const Header = () => {
               <p className="text-[#26C6DA] font-black uppercase tracking-widest text-xs mb-2">
                 {t("TechnicalAssessment")}
               </p>
-              <p className="text-white text-lg font-black">
-                +971-42 945 885
-              </p>
+              <p className="text-white text-lg font-black">+971-42 945 885</p>
             </div>
           </motion.div>
         )}

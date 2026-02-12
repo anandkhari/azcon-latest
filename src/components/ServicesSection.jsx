@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import SectionWrapper from "@/components/SectionWrapper";
 import { useTranslations } from "next-intl";
 import useTranslatedServices from "@/hooks/useTranslatedServices";
 import { servicesIconMap } from "@/data/servicesIconMap";
+import { motion } from "framer-motion";
+import { HiOutlineWrenchScrewdriver } from "react-icons/hi2";
 
 export default function ServicesSection() {
   const t = useTranslations("Services");
@@ -46,15 +50,17 @@ export default function ServicesSection() {
               );
 
             return (
-              <div
+              <motion.div
                 key={service.slug}
-                className="group relative flex flex-col bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-[#26C6DA]/50"
-                style={{
-                  animation: `slideInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards`,
-                  animationDelay: `${index * 0.1}s`,
-                  opacity: 0,
-                  transform: "translateY(20px)",
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: "easeOut",
                 }}
+                className="group relative flex flex-col bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-white/50 hover:border-[#26C6DA]/50"
               >
                 {/* Image */}
                 <div className="relative h-56 md:h-72 w-full overflow-hidden">
@@ -68,7 +74,7 @@ export default function ServicesSection() {
 
                   {/* React Icon */}
                   <div className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl flex items-center justify-center shadow-2xl group-hover:bg-[#26C6DA] transition-colors duration-300 text-white text-2xl md:text-3xl">
-                    {servicesIconMap[service.slug]}
+                    {Icon}
                   </div>
                 </div>
 
@@ -100,24 +106,11 @@ export default function ServicesSection() {
                     </span>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </SectionWrapper>
   );
 }
