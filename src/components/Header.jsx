@@ -10,9 +10,9 @@ const Header = () => {
   const t = useTranslations("Header");
   const [isSticky, setSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  /* ================= SCROLL HANDLER ================= */
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
@@ -20,51 +20,18 @@ const Header = () => {
 
       const windowHeight =
         document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrolled / windowHeight) * 100;
-      setScrollProgress(progress);
+
+      setScrollProgress((scrolled / windowHeight) * 100);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const megaMenuData = {
-    services: [
-      {
-        category: t("megaMenu.BuildingMaintenance.category"),
-        image: "/service.png",
-        description: t("megaMenu.BuildingMaintenance.description"),
-        links: [
-          t("megaMenu.BuildingMaintenance.links.0"),
-          t("megaMenu.BuildingMaintenance.links.1"),
-          t("megaMenu.BuildingMaintenance.links.2"),
-          t("megaMenu.BuildingMaintenance.links.3"),
-        ],
-      },
-      {
-        category: t("megaMenu.Interiors.category"),
-        image: "/service_2.png",
-        description: t("megaMenu.Interiors.description"),
-        links: [
-          t("megaMenu.Interiors.links.0"),
-          t("megaMenu.Interiors.links.1"),
-          t("megaMenu.Interiors.links.2"),
-          t("megaMenu.Interiors.links.3"),
-        ],
-      },
-      {
-        category: t("megaMenu.Industrial.category"),
-        image: "/service_4.png",
-        description: t("megaMenu.Industrial.description"),
-        links: [
-          t("megaMenu.Industrial.links.0"),
-          t("megaMenu.Industrial.links.1"),
-          t("megaMenu.Industrial.links.2"),
-          t("megaMenu.Industrial.links.3"),
-        ],
-      },
-    ],
-  };
+  /* Lock background scroll when mobile menu open */
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+  }, [isMobileMenuOpen]);
 
   const navItems = [
     { key: "Home", href: "/" },
@@ -76,34 +43,30 @@ const Header = () => {
 
   return (
     <>
-      {/* 1. Scroll Progress Bar */}
+      {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#26C6DA] to-[#0A192F] z-[70] origin-left"
         style={{ scaleX: scrollProgress / 100 }}
-        initial={{ scaleX: 0 }}
       />
 
+      {/* ================= HEADER ================= */}
       <motion.header
         className={`w-full top-0 left-0 z-50 transition-all duration-500 ${
           isSticky ? "fixed shadow-2xl" : "absolute"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        {/* Sticky Backdrop Blur */}
+        {/* Sticky Blur */}
         <motion.div
-          className={`absolute inset-0 bg-white/95 backdrop-blur-md z-0 ${
-            !isSticky ? "pointer-events-none" : ""
-          }`}
+          className="absolute inset-0 bg-white/95 backdrop-blur-md z-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: isSticky ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
         />
 
-        {/* 2. Top Bar (Hides on Scroll) */}
+        {/* ================= TOP BAR ================= */}
         <motion.div
-          className="bg-[#0A192F] text-white py-2 transition-all duration-500 overflow-hidden relative z-20"
+          className="bg-[#0A192F] text-white overflow-hidden relative z-20"
           animate={{
             height: isSticky ? 0 : "auto",
             opacity: isSticky ? 0 : 1,
@@ -111,170 +74,148 @@ const Header = () => {
             paddingBottom: isSticky ? 0 : "0.5rem",
           }}
         >
-          <div className="container mx-auto px-6 flex justify-between items-center text-[10px] font-black uppercase tracking-[0.2em]">
-            <div className="flex items-center space-x-6">
-              <span className="flex items-center gap-2">
-                <motion.span
-                  className="w-2 h-2 rounded-full bg-[#26C6DA]"
-                  animate={{ scale: [1, 1.2, 1], opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                {t("TechnicalResponse")}
-              </span>
-            </div>
-            <div className="flex gap-6 items-center">
-              <span className="hover:text-[#26C6DA] transition-colors cursor-pointer hidden md:block opacity-70">
-                {t("ServingEmirates")}
-              </span>
-            </div>
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 flex justify-between items-center text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">
+            <span className="flex items-center gap-2">
+              <motion.span
+                className="w-2 h-2 rounded-full bg-[#26C6DA]"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              {t("TechnicalResponse")}
+            </span>
+
+            <span className="hidden md:block opacity-70">
+              {t("ServingEmirates")}
+            </span>
           </div>
         </motion.div>
 
-        {/* 3. Main Navigation Area */}
+        {/* ================= MAIN NAV ================= */}
         <div
-          className={`max-w-7xl container mx-auto px-2 transition-all duration-300 relative z-30 ${
-            isSticky ? "py-2" : "py-6"
+          className={`max-w-7xl mx-auto px-3 sm:px-6 relative z-30 transition-all ${
+            isSticky ? "py-2" : "py-4 md:py-6"
           }`}
         >
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="group">
-              <motion.span
-                className={`text-2xl md:text-3xl font-black tracking-tighter transition-colors duration-300 ${
+            {/* LOGO */}
+            <Link href="/">
+              <span
+                className={`text-xl sm:text-2xl md:text-3xl font-black tracking-tighter transition-colors ${
                   isSticky ? "text-[#0A192F]" : "text-white"
                 }`}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
               >
                 AZCON <span className="text-[#26C6DA]">INFRA</span>
-              </motion.span>
+              </span>
             </Link>
 
-            {/* Desktop Nav + Switcher Group */}
+            {/* DESKTOP NAV */}
             <div className="hidden lg:flex items-center gap-10">
-              <nav className="flex items-center space-x-10 h-full">
+              <nav className="flex items-center space-x-8 xl:space-x-10">
                 {navItems.map((item) => (
                   <Link
                     key={item.key}
                     href={item.href}
                     className={`text-[11px] font-black uppercase tracking-[0.2em] transition-all ${
                       isSticky ? "text-[#0A192F]" : "text-white"
-                    } hover:text-[#26C6DA] relative group`}
+                    } hover:text-[#26C6DA]`}
                   >
                     {t(item.key)}
-                    <motion.span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#26C6DA] group-hover:w-full transition-all duration-300" />
                   </Link>
                 ))}
 
-                {/* Services Dropdown Trigger */}
-                <div
-                  className="group h-full flex items-center relative"
-                  onMouseEnter={() => setActiveTab("services")}
+                <Link
+                  href="/services"
+                  className={`text-[11px] font-black uppercase tracking-[0.2em] ${
+                    isSticky ? "text-[#0A192F]" : "text-white"
+                  } hover:text-[#26C6DA]`}
                 >
-                  <Link
-                    href="/services"
-                    className={`text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-1 transition-all ${
-                      isSticky ? "text-[#0A192F]" : "text-white"
-                    } hover:text-[#26C6DA]`}
-                  >
-                    {t("Services")}
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </Link>
-                  
-                  {/* Mega Menu logic remains the same as your original */}
-                </div>
+                  {t("Services")}
+                </Link>
               </nav>
 
-              {/* Language Switcher - Placed inside Main Nav for visibility */}
               <div className="border-l border-white/10 pl-6">
                 <LanguageSwitcher />
               </div>
             </div>
 
-            {/* Contact Button & Mobile Toggle */}
-            <div className="flex items-center gap-6">
-              {/* <div className="hidden md:flex items-center gap-6">
-                <motion.div
-                  className={`hidden xl:block text-right ${
-                    isSticky ? "text-[#0A192F]" : "text-white"
-                  }`}
-                >
-                  
-                  <p className="text-sm font-black tracking-tighter">info@azconinfra.com</p>
-                </motion.div>
-                <Link
-                  href="/contact"
-                  className={`px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] rounded-sm transition-all duration-500 shadow-2xl ${
-                    isSticky
-                      ? "bg-[#0A192F] text-white hover:bg-[#26C6DA] hover:text-[#0A192F]"
-                      : "bg-[#26C6DA] text-[#0A192F] hover:bg-white"
-                  }`}
-                >
-                  {t("SecureAssessment")}
-                </Link>
-              </div> */}
-
-              {/* Mobile Menu Button */}
-              <motion.button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`lg:hidden p-2 ${isSticky ? "text-[#0A192F]" : "text-white"}`}
-                whileTap={{ scale: 0.9 }}
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
-                </svg>
-              </motion.button>
-            </div>
+            {/* MOBILE MENU BUTTON */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`lg:hidden p-2 ${
+                isSticky ? "text-[#0A192F]" : "text-white"
+              }`}
+            >
+              <svg className="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d={
+                    isMobileMenuOpen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M4 6h16M4 12h16m-7 6h7"
+                  }
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* ================= MOBILE MENU ================= */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-[#0A192F] z-[100] p-8 flex flex-col"
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-[#0A192F] z-[100] px-6 pt-safe pb-10 flex flex-col overflow-y-auto"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
           >
-            <div className="flex justify-between items-center mb-16">
-              <span className="text-2xl font-black text-white">
+            {/* TOP */}
+            <div className="flex justify-between items-center mb-12">
+              <span className="text-xl sm:text-2xl font-black text-white">
                 AZCON <span className="text-[#26C6DA]">INFRA</span>
               </span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-[#26C6DA]">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+
+              <button onClick={() => setIsMobileMenuOpen(false)}>
+                <svg className="w-9 h-9 text-[#26C6DA]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            
-            {/* Added Language Switcher to Mobile Menu Top */}
-            <div className="mb-10">
-                <LanguageSwitcher />
-            </div>
 
-            <nav className="flex flex-col space-y-8">
-              {navItems.map((item, index) => (
+            <LanguageSwitcher />
+
+            {/* NAV */}
+            <nav className="flex flex-col space-y-6 mt-10">
+              {navItems.map((item) => (
                 <Link
                   key={item.key}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-4xl font-black text-white uppercase tracking-tighter hover:text-[#26C6DA] transition-colors inline-block"
+                  className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight hover:text-[#26C6DA]"
                 >
                   {t(item.key)}
                 </Link>
               ))}
+
+              <Link
+                href="/services"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight hover:text-[#26C6DA]"
+              >
+                {t("Services")}
+              </Link>
             </nav>
-            
+
+            {/* FOOTER */}
             <div className="mt-auto border-t border-white/10 pt-8">
               <p className="text-[#26C6DA] font-black uppercase tracking-widest text-xs mb-2">
                 {t("TechnicalAssessment")}
               </p>
-              <p className="text-white text-xl font-black">+971-42 945 885</p>
+              <p className="text-white text-lg font-black">
+                +971-42 945 885
+              </p>
             </div>
           </motion.div>
         )}

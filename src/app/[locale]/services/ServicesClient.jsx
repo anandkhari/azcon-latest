@@ -17,7 +17,7 @@ const ServicesClient = () => {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative h-[100vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
+      <section className="relative h-[80vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -47,14 +47,13 @@ const ServicesClient = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-         <h1 className="text-3xl md:text-6xl lg:text-6xl font-black text-white tracking-tighter uppercase mb-8 leading-[0.9]">
-  {tp.rich("Hero.Title", {
-    italic: (chunks) => (
-      <span className="text-[#26C6DA] ">{chunks}</span>
-    ),
-  })}
-</h1>
-
+            <h1 className="text-3xl md:text-6xl lg:text-6xl font-semibold text-white tracking-tight  mb-8 leading-[0.9]">
+              {tp.rich("Hero.Title", {
+                italic: (chunks) => (
+                  <span className="text-[#26C6DA] ">{chunks}</span>
+                ),
+              })}
+            </h1>
 
             <p className="text-gray-200 text-lg md:text-2xl max-w-3xl mx-auto font-light tracking-tight  opacity-90">
               {tp("Hero.Subtitle")}
@@ -70,7 +69,7 @@ const ServicesClient = () => {
       {/* SERVICES GRID SECTION */}
       <SectionWrapper className="bg-gray-50 !py-24">
         {/* Blueprint Grid Background for the wrapper */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+        <div className="grid max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           {services.map((service) => (
             <ServiceCard
               key={service.slug}
@@ -91,4 +90,3 @@ const ServicesClient = () => {
 };
 
 export default ServicesClient;
-

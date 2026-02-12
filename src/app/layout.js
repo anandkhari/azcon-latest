@@ -23,12 +23,13 @@ export default async function RootLayout({ children }) {
   const locales = ["en", "ar"];
   const defaultLocale = "en";
   const locale = locales.includes(localeCookie) ? localeCookie : defaultLocale;
-  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} className={`${inter.variable} ${poppins.variable}`}>
+    <html lang={locale} dir="ltr" className={`${inter.variable} ${poppins.variable}`}>
       <body className="antialiased font-poppins">
-        <LanguageProvider initialLang={locale}>{children}</LanguageProvider>
+        <LanguageProvider initialLang={locale}>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -135,7 +135,7 @@ export default function BlogSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl md:text-6xl font-black text-white tracking-tighter uppercase mb-8 leading-[0.9]">
+            <h1 className="text-3xl md:text-6xl font-semibold text-white tracking-tight  mb-8 leading-[0.9]">
               Blogs
             </h1>
 

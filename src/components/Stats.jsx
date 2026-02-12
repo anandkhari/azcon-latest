@@ -83,10 +83,10 @@ const Stats = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 max-w-full relative z-10">
-        <StatCounter value="13" suffix="+" label={t("Counter1")} delay={0} />
+        <StatCounter value="12" suffix="+" label={t("Counter1")} delay={0} />
         <StatCounter value="100" suffix="%" label={t("Counter2")} delay={0.1} />
         <StatCounter value="24" suffix="/7" label={t("Counter3")} delay={0.2} />
-        <StatCounter value="100" suffix="%" label={t("Counter4")} delay={0.3} />
+        <StatCounter value="1000" suffix="+" label={t("Counter4")} delay={0.3} />
       </div>
 
       {/* Bottom accent glow */}

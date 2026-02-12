@@ -39,7 +39,7 @@ const AboutClient = () => {
   return (
     <>
       {/* --- HERO SECTION --- */}
-      <section className="relative h-[85vh] min-h-[700px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
+      <section className="relative h-[70vh] min-h-[700px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.pexels.com/photos/29470794/pexels-photo-29470794.jpeg"
@@ -140,7 +140,7 @@ const AboutClient = () => {
         </h2>
       </div>
 
-      <p className="text-[#486581] text-lg leading-relaxed font-medium">
+      <p className="text-[#486581] text-base md:text-lg leading-relaxed">
         {t("Edge.Description")}
       </p>
 
@@ -172,7 +172,7 @@ const AboutClient = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="relative w-36 h-36 md:w-44 md:h-44 bg-[#0A192F] border border-[#26C6DA]/30 flex items-center justify-center"
+        className="relative w-36 h-36 md:w-44 md:h-44 bg-[#0A192F] border border-[#26C6DA]/30 flex items-center rounded-3xl justify-center"
       >
         <LuEye className="w-14 h-14 md:w-16 md:h-16 text-[#26C6DA]" />
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,#26C6DA_1px,transparent_1px)] opacity-10 bg-[length:14px_14px]" />
@@ -193,7 +193,7 @@ const AboutClient = () => {
           {t("VisionMission.VisionTitle")}
         </h3>
 
-        <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-4xl font-medium">
+        <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-4xl font-light">
           {t("VisionMission.VisionText")}
         </p>
       </motion.div>
@@ -207,7 +207,7 @@ const AboutClient = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="relative w-36 h-36 md:w-44 md:h-44 bg-[#0A192F] border border-[#26C6DA]/30 flex items-center justify-center"
+        className="relative w-36 h-36 md:w-44 md:h-44 bg-[#0A192F] border border-[#26C6DA]/30 rounded-3xl flex items-center justify-center"
       >
         <LuTarget className="w-14 h-14 md:w-16 md:h-16 text-[#26C6DA]" />
       </motion.div>
@@ -227,7 +227,7 @@ const AboutClient = () => {
           {t("VisionMission.MissionTitle")}
         </h3>
 
-        <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-4xl font-medium">
+        <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-4xl font-light">
           {t("VisionMission.MissionText")}
         </p>
       </motion.div>

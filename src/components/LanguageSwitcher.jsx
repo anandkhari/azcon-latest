@@ -64,7 +64,7 @@ export default function LanguageSwitcher() {
 
   // Explicitly determine which flag to show for the MAIN BUTTON
   const CurrentFlag = language === "ar" ? UAEFlag : USFlag;
-  const currentLabel = language === "ar" ? "Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©" : "English";
+ const currentLabel = language === "ar" ? "العربية" : "English";
 
   return (
     <div className="relative z-50" ref={containerRef}>
@@ -129,7 +129,7 @@ export default function LanguageSwitcher() {
                   language === "ar" ? "text-[#26C6DA]" : "text-gray-300"
                 }`}
               >
-                Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©
+                Arabic
               </span>
               {language === "ar" && <CheckIcon />}
             </button>

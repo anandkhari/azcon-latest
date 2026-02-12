@@ -84,7 +84,7 @@ const Hero = () => {
               alt="Azcon Infra Engineering Excellence"
               fill
               priority
-              className="object-fit"
+              className="object-cover object-center"
             />
 
             {/* Persistent soft overlay (no flicker) */}

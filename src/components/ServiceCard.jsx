@@ -1,12 +1,17 @@
 // src/components/ServiceCard.jsx
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
+import { servicesIconMap } from "@/data/servicesIconMap";
 
 const ServiceCard = ({ service }) => {
-  return (
-    <Link href={`/services/${service.slug}`} className="block h-full group relative">
-      <div className="h-full relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-100">
+  const Icon = servicesIconMap[service.slug];
 
+  return (
+    <Link
+      href={`/services/${service.slug}`}
+      className="block h-full group relative"
+    >
+      <div className="h-full relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-100">
         {/* Image Section */}
         <div className="relative h-64 w-full overflow-hidden">
           <Image
@@ -19,19 +24,17 @@ const ServiceCard = ({ service }) => {
 
           {/* Floating Icon */}
           <div className="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg flex items-center justify-center shadow-lg group-hover:bg-[#26C6DA] group-hover:text-[#0A192F] transition-all duration-500 text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={service.iconPath} />
-            </svg>
+            <div className="text-white text-3xl">{Icon}</div>
           </div>
         </div>
 
         {/* Content Section */}
         <div className="p-8 relative">
-          <div className="absolute -top-10 left-8">
+          {/* <div className="absolute -top-10 left-8">
             <span className="bg-[#26C6DA] text-[#0A192F] text-[10px] font-black px-3 py-1 uppercase tracking-widest rounded-sm shadow-lg">
               Service
             </span>
-          </div>
+          </div> */}
 
           <h3 className="text-xl font-black text-[#0A192F] mb-3 uppercase tracking-tight group-hover:text-[#26C6DA] transition-colors duration-300">
             {service.title}
@@ -46,8 +49,18 @@ const ServiceCard = ({ service }) => {
               Explore Details
             </span>
             <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#26C6DA] group-hover:text-white transition-all duration-300">
-              <svg className="w-4 h-4 transform group-hover:-rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              <svg
+                className="w-4 h-4 transform group-hover:-rotate-45 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
               </svg>
             </div>
           </div>
