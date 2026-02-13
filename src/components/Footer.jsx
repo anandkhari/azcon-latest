@@ -34,7 +34,7 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="lg:col-span-1">
               <h3 className="text-2xl font-black tracking-tighter mb-6 uppercase">
-                AZCON <span className="text-[#26C6DA]">INFRA</span>
+                <span className="text-[#26C6DA]"> AZCON INFRA</span>
               </h3>
               <p className="text-gray-400 leading-relaxed mb-8 text-sm font-medium">
                 {t("Description")}
