@@ -117,183 +117,182 @@ export default function HomeClient() {
       </SectionWrapper>
 
       <SectionWrapper className="bg-white relative overflow-hidden py-24">
-  {/* Background Blueprint Grid */}
-  <div
-    className="absolute inset-0 opacity-[0.025] pointer-events-none"
-    style={{
-      backgroundImage:
-        "linear-gradient(#0A192F 1px, transparent 1px), linear-gradient(90deg, #0A192F 1px, transparent 1px)",
-      backgroundSize: "60px 60px",
-    }}
-  />
+        {/* Background Blueprint Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(#0A192F 1px, transparent 1px), linear-gradient(90deg, #0A192F 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-  <div className="relative z-10 max-w-7xl mx-auto px-4">
-    {/* Header Section */}
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-10">
-      <div className="max-w-2xl">
-        <span className="inline-block bg-[#0A192F] text-white font-black uppercase tracking-[0.3em] text-[10px] px-4 py-2 mb-5 rounded-sm">
-          {t("Validation.Label")}
-        </span>
-
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0A192F] tracking-tight leading-tight uppercase">
-          {t.rich("Validation.Title", {
-            italic: (chunks) => (
-              <span className="text-[#26C6DA]">{chunks}</span>
-            ),
-          })}
-        </h2>
-      </div>
-
-      {/* Navigation Controls */}
-      <div className="flex gap-3">
-        <button
-          onClick={scrollPrev}
-          className="group w-12 h-12 border border-gray-200 flex items-center justify-center hover:bg-[#0A192F] hover:border-[#0A192F] transition-all duration-300"
-        >
-          <span className="text-[#0A192F] group-hover:text-[#26C6DA] text-lg transition-colors">
-            ←
-          </span>
-        </button>
-        <button
-          onClick={scrollNext}
-          className="group w-12 h-12 bg-[#0A192F] flex items-center justify-center hover:bg-[#26C6DA] transition-all duration-300"
-        >
-          <span className="text-white group-hover:text-[#0A192F] text-lg transition-colors">
-            →
-          </span>
-        </button>
-      </div>
-    </div>
-
-    {/* Carousel Viewport */}
-    <div
-      className="overflow-hidden cursor-grab active:cursor-grabbing"
-      ref={emblaRef}
-    >
-      <div className="flex gap-6">
-        {["0", "1", "2", "3", "4", "5"].map((idx) => (
-          <div
-            key={idx}
-            className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_31%] min-w-0"
-          >
-            <div className="h-full bg-gray-50/60 backdrop-blur-sm p-8 md:p-10 border border-gray-100 hover:border-[#26C6DA]/30 transition-all duration-500 group relative flex flex-col">
-              {/* Index */}
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-25 transition-opacity">
-                <span className="text-4xl font-black text-[#0A192F]">
-                  0{parseInt(idx) + 1}
-                </span>
-              </div>
-
-              {/* Testimonial */}
-              <p className="text-[#486581] text-sm md:text-base leading-relaxed mb-10 relative z-10 font-medium">
-                “{t(`Validation.Testimonials.${idx}.q`)}”
-              </p>
-
-              {/* Author */}
-              <div className="mt-auto flex items-center gap-5 pt-6 border-t border-gray-100">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-[#0A192F] flex items-center justify-center text-[#26C6DA] font-black text-base rounded-sm group-hover:bg-[#26C6DA] group-hover:text-[#0A192F] transition-all duration-300">
-                    {t(`Validation.Testimonials.${idx}.n`)[0]}
-                  </div>
-                  <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#26C6DA] rounded-full border-2 border-white" />
-                </div>
-
-                <div>
-                  <p className="font-black text-xs text-[#0A192F] uppercase tracking-widest mb-1">
-                    {t(`Validation.Testimonials.${idx}.n`)}
-                  </p>
-                  <p className="text-[#26C6DA] text-[10px] uppercase font-black tracking-widest opacity-80">
-                    {t(`Validation.Testimonials.${idx}.s`)}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Progress Indicator */}
-    <div className="mt-14 w-full h-px bg-gray-100 relative">
-      <motion.div
-        className="absolute top-0 left-0 h-[2px] bg-[#26C6DA]"
-        style={{ width: "20%" }}
-      />
-    </div>
-  </div>
-</SectionWrapper>
-
- {/* --- SECTION 5: FAQ --- */}
-<SectionWrapper className="bg-[#F8FAFC] py-24">
-  <div className="max-w-7xl mx-auto px-4">
-
-    {/* Section Header */}
-    <div className="mb-20">
-      <span className="inline-block text-[#26C6DA] font-black uppercase tracking-[0.3em] text-[10px] mb-4">
-        Support
-      </span>
-
-      <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold text-[#0A192F]  tracking-tight leading-tight">
-        Frequently Asked <span className="text-[#26C6DA]"> Questions</span>
-      </h2>
-
-      <p className="mt-4 text-gray-500 text-sm md:text-base max-w-2xl">
-        Clear, concise answers to common technical, operational, and service-related
-        questions to help you make informed decisions.
-      </p>
-    </div>
-
-    {/* Content Grid */}
-    <div className="grid lg:grid-cols-12 gap-16 items-start">
-
-      {/* Left Visual (Desktop Only) */}
-      <div className="hidden lg:block lg:col-span-4 lg:sticky lg:top-32">
-        <div className="relative h-[380px] w-full overflow-hidden rounded-sm shadow-xl group">
-          <Image
-            src="https://images.pexels.com/photos/7709198/pexels-photo-7709198.jpeg"
-            alt="Technical Support"
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/50 to-transparent" />
-        </div>
-      </div>
-
-      {/* FAQ List */}
-      <div className="lg:col-span-8 space-y-4">
-        {["0", "1", "2", "3", "4"].map((idx) => (
-          <details
-            key={idx}
-            className="group bg-white border border-gray-200 open:border-[#26C6DA] transition-all duration-300"
-          >
-            <summary className="list-none cursor-pointer p-6 flex justify-between items-center group-open:bg-[#0A192F] transition-colors">
-              <span className="flex items-start gap-4 font-black text-xs uppercase tracking-[0.18em] text-[#0A192F] group-open:text-white">
-                <span className="text-[#26C6DA]">
-                  {parseInt(idx) + 1}.
-                </span>
-                {t(`Assistance.FAQ.${idx}.q`)}
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-10">
+            <div className="max-w-2xl">
+              <span className="inline-block bg-[#0A192F] text-white font-black uppercase tracking-[0.3em] text-[10px] px-4 py-2 mb-5 rounded-sm">
+                {t("Validation.Label")}
               </span>
 
-              <div className="w-6 h-6 flex items-center justify-center border border-gray-200 group-open:border-[#26C6DA] transition-all group-open:rotate-45">
-                <span className="text-[#26C6DA] font-bold text-lg">+</span>
-              </div>
-            </summary>
-
-            <div className="px-6 md:px-8 py-6 border-t border-gray-100">
-              <p className="text-gray-600 text-sm leading-relaxed max-w-2xl font-medium">
-                {t(`Assistance.FAQ.${idx}.a`)}
-              </p>
+              <h2 className="text-3xl md:text-4xl lg:text-6xl font-black text-[#0A192F] tracking-tight leading-tight ">
+                {t.rich("Validation.Title", {
+                  italic: (chunks) => (
+                    <span className="text-[#26C6DA]">{chunks}</span>
+                  ),
+                })}
+              </h2>
             </div>
-          </details>
-        ))}
-      </div>
-    </div>
-  </div>
-</SectionWrapper>
 
+            {/* Navigation Controls */}
+            <div className="flex gap-3">
+              <button
+                onClick={scrollPrev}
+                className="group w-12 h-12 border border-gray-200 flex items-center justify-center hover:bg-[#0A192F] hover:border-[#0A192F] transition-all duration-300"
+              >
+                <span className="text-[#0A192F] group-hover:text-[#26C6DA] text-lg transition-colors">
+                  ←
+                </span>
+              </button>
+              <button
+                onClick={scrollNext}
+                className="group w-12 h-12 bg-[#0A192F] flex items-center justify-center hover:bg-[#26C6DA] transition-all duration-300"
+              >
+                <span className="text-white group-hover:text-[#0A192F] text-lg transition-colors">
+                  →
+                </span>
+              </button>
+            </div>
+          </div>
 
+          {/* Carousel Viewport */}
+          <div
+            className="overflow-hidden cursor-grab active:cursor-grabbing"
+            ref={emblaRef}
+          >
+            <div className="flex gap-6">
+              {["0", "1", "2", "3", "4", "5"].map((idx) => (
+                <div
+                  key={idx}
+                  className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_31%] min-w-0"
+                >
+                  <div className="h-full bg-gray-50/60 backdrop-blur-sm p-8 md:p-10 border border-gray-100 hover:border-[#26C6DA]/30 transition-all duration-500 group relative flex flex-col">
+                    {/* Index */}
+                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-25 transition-opacity">
+                      <span className="text-4xl font-black text-[#0A192F]">
+                        0{parseInt(idx) + 1}
+                      </span>
+                    </div>
 
-   <CTA />
+                    {/* Testimonial */}
+                    <p className="text-[#486581] text-sm md:text-base leading-relaxed mb-10 relative z-10 font-medium">
+                      “{t(`Validation.Testimonials.${idx}.q`)}”
+                    </p>
+
+                    {/* Author */}
+                    <div className="mt-auto flex items-center gap-5 pt-6 border-t border-gray-100">
+                      <div className="relative">
+                        <div className="w-12 h-12 bg-[#0A192F] flex items-center justify-center text-[#26C6DA] font-black text-base rounded-sm group-hover:bg-[#26C6DA] group-hover:text-[#0A192F] transition-all duration-300">
+                          {t(`Validation.Testimonials.${idx}.n`)[0]}
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#26C6DA] rounded-full border-2 border-white" />
+                      </div>
+
+                      <div>
+                        <p className="font-black text-xs text-[#0A192F] uppercase tracking-widest mb-1">
+                          {t(`Validation.Testimonials.${idx}.n`)}
+                        </p>
+                        <p className="text-[#26C6DA] text-[10px] uppercase font-black tracking-widest opacity-80">
+                          {t(`Validation.Testimonials.${idx}.s`)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="mt-14 w-full h-px bg-gray-100 relative">
+            <motion.div
+              className="absolute top-0 left-0 h-[2px] bg-[#26C6DA]"
+              style={{ width: "20%" }}
+            />
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* --- SECTION 5: FAQ --- */}
+      <SectionWrapper className="bg-[#F8FAFC] py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Section Header */}
+          <div className="mb-20">
+            <span className="inline-block text-[#26C6DA] font-black uppercase tracking-[0.3em] text-[10px] mb-4">
+              Support
+            </span>
+
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold text-[#0A192F]  tracking-tight leading-tight">
+              Frequently Asked{" "}
+              <span className="text-[#26C6DA]"> Questions</span>
+            </h2>
+
+            <p className="mt-4 text-gray-500 text-sm md:text-base max-w-2xl">
+              Clear, concise answers to common technical, operational, and
+              service-related questions to help you make informed decisions.
+            </p>
+          </div>
+
+          {/* Content Grid */}
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            {/* Left Visual (Desktop Only) */}
+            <div className="hidden lg:block lg:col-span-4 lg:sticky lg:top-32">
+              <div className="relative h-[380px] w-full overflow-hidden rounded-sm shadow-xl group">
+                <Image
+                  src="https://images.pexels.com/photos/7709198/pexels-photo-7709198.jpeg"
+                  alt="Technical Support"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/50 to-transparent" />
+              </div>
+            </div>
+
+            {/* FAQ List */}
+            <div className="lg:col-span-8 space-y-4">
+              {["0", "1", "2", "3", "4"].map((idx) => (
+                <details
+                  key={idx}
+                  className="group bg-white border border-gray-200 open:border-[#26C6DA] transition-all duration-300"
+                >
+                  <summary className="list-none cursor-pointer p-6 flex justify-between items-center group-open:bg-[#0A192F] transition-colors">
+                    <span className="flex items-start gap-4 font-black text-xs uppercase tracking-[0.18em] text-[#0A192F] group-open:text-white">
+                      <span className="text-[#26C6DA]">
+                        {parseInt(idx) + 1}.
+                      </span>
+                      {t(`Assistance.FAQ.${idx}.q`)}
+                    </span>
+
+                    <div className="w-6 h-6 flex items-center justify-center border border-gray-200 group-open:border-[#26C6DA] transition-all group-open:rotate-45">
+                      <span className="text-[#26C6DA] font-bold text-lg">
+                        +
+                      </span>
+                    </div>
+                  </summary>
+
+                  <div className="px-6 md:px-8 py-6 border-t border-gray-100">
+                    <p className="text-gray-600 text-sm leading-relaxed max-w-2xl font-medium">
+                      {t(`Assistance.FAQ.${idx}.a`)}
+                    </p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      <CTA />
     </>
   );
 }

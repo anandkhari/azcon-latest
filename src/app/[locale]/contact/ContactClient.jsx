@@ -59,7 +59,7 @@ const ContactClient = () => {
       label: "OFFICE HEADQUARTERS",
       icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
       address:
-        "Azcon Infra Technical Service L.L.C, Dubai Investment Park - 1, Dubai, United Arab Emirates, PO Box 233938",
+        "Azcon Infra Technical Service L.L.C, Dubai Investment Park - 1, Dubai, United Arab Emirates",
     },
   ];
 
@@ -226,17 +226,18 @@ const ContactClient = () => {
 
           {/* ================= MAP ================= */}
             {/* 3. BOTTOM: INTERACTIVE MAP */}
-          <div className="h-[400px] w-full border-t  transition-all duration-700">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.1786539269227!2d55.2718!3d25.185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6831!2sBusiness%20Bay%20Dubai!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+     <div className="h-[400px] w-full border-t transition-all duration-700">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.668472839297!2d55.1649983!3d24.985963599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f731cc92d8785%3A0x19410dded885d47!2sAzcon%20infra%20Technical%20Service%20L.L.C!5e1!3m2!1sen!2sin!4v1770987334667!5m2!1sen!2sin"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
         </div>
       </section>
     </>

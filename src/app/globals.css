@@ -148,3 +148,12 @@
 .animate-scale-in {
   animation: scaleIn 0.6s var(--ease-smooth) forwards;
 }
+
+@keyframes loaderBar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-loaderBar {
+  animation: loaderBar 1.2s linear infinite;
+}

@@ -16,7 +16,21 @@ export default function PublicGalleryPage() {
   const [galleryItems, setGalleryItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // ===== SEO HERO TEXT =====
+  /* ⭐ NEW FILTER STATE */
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  /* ⭐ AUTO-DETECT CATEGORIES FROM FIRESTORE */
+  const categories = [
+    "all",
+    ...Array.from(new Set(galleryItems.map((i) => i.category).filter(Boolean))),
+  ];
+
+  /* ⭐ FILTERED ITEMS */
+  const filteredItems =
+    activeCategory === "all"
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeCategory);
+
   const [heroText, setHeroText] = useState({
     title: "Engineering Project Gallery",
     desc:
@@ -26,7 +40,7 @@ export default function PublicGalleryPage() {
       "New engineering project visuals will appear here once published.",
   });
 
-  // ===== FIREBASE LISTENER =====
+  /* ================= FIREBASE LISTENER ================= */
   useEffect(() => {
     const q = collection(db, "gallery");
     const unsub = onSnapshot(
@@ -46,7 +60,7 @@ export default function PublicGalleryPage() {
     return () => unsub();
   }, []);
 
-  // ===== TRANSLATIONS =====
+  /* ================= TRANSLATIONS ================= */
   useEffect(() => {
     let active = true;
 
@@ -95,7 +109,7 @@ export default function PublicGalleryPage() {
 
   return (
     <>
-      {/* ================= HERO (SEO HEADER) ================= */}
+      {/* ================= HERO ================= */}
       <header className="relative h-[70vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
         <div className="absolute inset-0 z-0">
           <Image
@@ -110,7 +124,6 @@ export default function PublicGalleryPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/80 via-transparent to-[#0A192F]" />
 
         <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
-          {/* ⭐ H1 (SEO IMPORTANT) */}
           <h1 className="text-3xl md:text-6xl font-semibold text-white tracking-tighter mb-8 leading-[0.9]">
             {heroText.title.split(" ")[0]}{" "}
             <span className="text-[#26C6DA]">
@@ -118,52 +131,62 @@ export default function PublicGalleryPage() {
             </span>
           </h1>
 
-          {/* ⭐ SEO DESCRIPTION */}
           <p className="text-gray-200 text-lg md:text-2xl mx-auto font-light tracking-tight opacity-90">
             {heroText.desc}
           </p>
 
-          {/* ⭐ Hidden SEO Paragraph (for ranking keywords) */}
           <p className="sr-only">
             Azcon delivers engineering, MEP installation, infrastructure
-            maintenance, and technical service solutions across Dubai, Abu Dhabi,
-            and the wider UAE. This gallery highlights real project executions
-            showcasing technical precision and industry expertise.
+            maintenance, and technical service solutions across Dubai, Abu
+            Dhabi, and the wider UAE.
           </p>
         </div>
       </header>
 
-      {/* ================= GALLERY GRID ================= */}
+      {/* ================= GALLERY ================= */}
       <SectionWrapper className="bg-[#f8fafc] min-h-screen py-24">
         <section
           className="container mx-auto px-6 max-w-7xl"
           dir="ltr"
-          aria-label="Azcon Engineering Projects Gallery"
         >
+          {/* ⭐ CATEGORY FILTER BAR */}
+          <div className="flex justify-center gap-6 flex-wrap mb-16">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`text-sm font-black tracking-widest uppercase transition-colors ${
+                  activeCategory === cat
+                    ? "text-red-500"
+                    : "text-gray-500 hover:text-[#26C6DA]"
+                }`}
+              >
+                {cat.replace("-", " ")}
+              </button>
+            ))}
+          </div>
+
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {Array.from({ length: 8 }).map((_, idx) => (
                 <div
                   key={idx}
-                  className="aspect-[4/5] bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 animate-pulse"
-                >
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200" />
-                </div>
+                  className="aspect-[4/5] bg-white rounded-xl animate-pulse"
+                />
               ))}
             </div>
-          ) : galleryItems.length > 0 ? (
+          ) : filteredItems.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               <AnimatePresence mode="popLayout">
-                {galleryItems.map((item) => (
+                {filteredItems.map((item) => (
                   <motion.figure
                     key={item.id}
                     layout
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="group relative aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                    className="group relative aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
                   >
-                    {/* ⭐ SEO ALT TEXT IMPROVED */}
                     <img
                       src={item.url}
                       alt={
@@ -175,34 +198,27 @@ export default function PublicGalleryPage() {
                       loading="lazy"
                     />
 
-                    {/* ⭐ Hidden Caption for SEO */}
                     <figcaption className="sr-only">
-                      Engineering project completed by Azcon UAE showcasing
-                      technical service execution and infrastructure expertise.
+                      Engineering project completed by Azcon UAE.
                     </figcaption>
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <div className="flex justify-end">
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
-                          aria-label="View engineering project image"
-                        >
-                          <FiExternalLink />
-                        </a>
-                      </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 flex justify-end items-end p-6">
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                      >
+                        <FiExternalLink />
+                      </a>
                     </div>
                   </motion.figure>
                 ))}
               </AnimatePresence>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-32 border-2 border-dashed border-gray-200 rounded-3xl bg-gray-50/50">
-              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-                <FiImage className="text-3xl text-gray-400" />
-              </div>
+            <div className="flex flex-col items-center justify-center py-32">
+              <FiImage className="text-3xl text-gray-400 mb-4" />
               <h2 className="text-xl font-bold text-[#0A192F]">
                 {heroText.emptyTitle}
               </h2>
