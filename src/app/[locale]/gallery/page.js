@@ -16,14 +16,14 @@ export default function PublicGalleryPage() {
   const [galleryItems, setGalleryItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // ===== HERO TRANSLATION STATE =====
+  // ===== SEO HERO TEXT =====
   const [heroText, setHeroText] = useState({
-    title: "Project Gallery",
-    desc: "A live showcase of Azcon’s latest infrastructure and installations.",
-    projectLabel: "Project",
+    title: "Engineering Project Gallery",
+    desc:
+      "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
     emptyTitle: "Gallery is empty",
     emptyDesc:
-      "New project images will appear here as soon as they are published.",
+      "New engineering project visuals will appear here once published.",
   });
 
   // ===== FIREBASE LISTENER =====
@@ -46,44 +46,41 @@ export default function PublicGalleryPage() {
     return () => unsub();
   }, []);
 
-  // ===== TRANSLATE HERO + STATIC TEXTS =====
+  // ===== TRANSLATIONS =====
   useEffect(() => {
     let active = true;
 
     const runTranslation = async () => {
       if (language !== "ar") {
         setHeroText({
-          title: "Project Gallery",
-          desc: "A live showcase of Azcon’s latest infrastructure and installations.",
-          projectLabel: "Project",
+          title: "Engineering Project Gallery",
+          desc:
+            "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
           emptyTitle: "Gallery is empty",
           emptyDesc:
-            "New project images will appear here as soon as they are published.",
+            "New engineering project visuals will appear here once published.",
         });
         return;
       }
 
-      const [tTitle, tDesc, tProject, tEmptyTitle, tEmptyDesc] =
-        await Promise.all([
-          translateText("Project Gallery", "ar"),
-          translateText(
-            "A live showcase of Azcon’s latest infrastructure and installations.",
-            "ar"
-          ),
-          translateText("Project", "ar"),
-          translateText("Gallery is empty", "ar"),
-          translateText(
-            "New project images will appear here as soon as they are published.",
-            "ar"
-          ),
-        ]);
+      const [tTitle, tDesc, tEmptyTitle, tEmptyDesc] = await Promise.all([
+        translateText("Engineering Project Gallery", "ar"),
+        translateText(
+          "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
+          "ar"
+        ),
+        translateText("Gallery is empty", "ar"),
+        translateText(
+          "New engineering project visuals will appear here once published.",
+          "ar"
+        ),
+      ]);
 
       if (!active) return;
 
       setHeroText({
         title: tTitle,
         desc: tDesc,
-        projectLabel: tProject,
         emptyTitle: tEmptyTitle,
         emptyDesc: tEmptyDesc,
       });
@@ -98,12 +95,12 @@ export default function PublicGalleryPage() {
 
   return (
     <>
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative h-[70vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
+      {/* ================= HERO (SEO HEADER) ================= */}
+      <header className="relative h-[70vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#0A192F]">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.pexels.com/photos/29470794/pexels-photo-29470794.jpeg"
-            alt="Azcon Project Gallery"
+            alt="Azcon engineering project gallery UAE infrastructure works"
             fill
             className="object-cover scale-105 opacity-50"
             priority
@@ -112,41 +109,36 @@ export default function PublicGalleryPage() {
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/80 via-transparent to-[#0A192F]" />
 
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 120 }}
-            transition={{ duration: 1.2, ease: "circOut" }}
-            className="h-[2px] bg-[#26C6DA] mx-auto mb-10 shadow-[0_0_20px_rgba(38,198,218,0.8)]"
-          />
+        <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
+          {/* ⭐ H1 (SEO IMPORTANT) */}
+          <h1 className="text-3xl md:text-6xl font-semibold text-white tracking-tighter mb-8 leading-[0.9]">
+            {heroText.title.split(" ")[0]}{" "}
+            <span className="text-[#26C6DA]">
+              {heroText.title.split(" ").slice(1).join(" ")}
+            </span>
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-3xl md:text-6xl font-semibold text-white tracking-tighter mb-8 leading-[0.9]">
-              {heroText.title.split(" ")[0]}{" "}
-              <span className="text-[#26C6DA]">
-                {heroText.title.split(" ").slice(1).join(" ")}
-              </span>
-            </h1>
+          {/* ⭐ SEO DESCRIPTION */}
+          <p className="text-gray-200 text-lg md:text-2xl mx-auto font-light tracking-tight opacity-90">
+            {heroText.desc}
+          </p>
 
-            <p className="text-gray-200 text-lg md:text-2xl max-w-3xl mx-auto font-light tracking-tight opacity-90">
-              {heroText.desc}
-            </p>
-          </motion.div>
+          {/* ⭐ Hidden SEO Paragraph (for ranking keywords) */}
+          <p className="sr-only">
+            Azcon delivers engineering, MEP installation, infrastructure
+            maintenance, and technical service solutions across Dubai, Abu Dhabi,
+            and the wider UAE. This gallery highlights real project executions
+            showcasing technical precision and industry expertise.
+          </p>
         </div>
+      </header>
 
-        <div className="absolute top-12 left-12 w-24 h-24 border-t-2 border-l-2 border-[#26C6DA]/20 hidden md:block" />
-        <div className="absolute bottom-12 right-12 w-24 h-24 border-b-2 border-r-2 border-[#26C6DA]/20 hidden md:block" />
-      </section>
-
-      {/* ===== GALLERY CONTENT ===== */}
+      {/* ================= GALLERY GRID ================= */}
       <SectionWrapper className="bg-[#f8fafc] min-h-screen py-24">
-        <div
+        <section
           className="container mx-auto px-6 max-w-7xl"
-          dir="ltr"   // keep layout stable
+          dir="ltr"
+          aria-label="Azcon Engineering Projects Gallery"
         >
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -163,7 +155,7 @@ export default function PublicGalleryPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               <AnimatePresence mode="popLayout">
                 {galleryItems.map((item) => (
-                  <motion.div
+                  <motion.figure
                     key={item.id}
                     layout
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -171,32 +163,38 @@ export default function PublicGalleryPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="group relative aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100"
                   >
+                    {/* ⭐ SEO ALT TEXT IMPROVED */}
                     <img
                       src={item.url}
-                      alt={item.name || "Azcon gallery image"}
+                      alt={
+                        item.name
+                          ? `${item.name} engineering project UAE - Azcon`
+                          : "Azcon engineering infrastructure project UAE"
+                      }
                       className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                       loading="lazy"
                     />
 
+                    {/* ⭐ Hidden Caption for SEO */}
+                    <figcaption className="sr-only">
+                      Engineering project completed by Azcon UAE showcasing
+                      technical service execution and infrastructure expertise.
+                    </figcaption>
+
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      <div className="flex justify-between items-center transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
-                        <div className="flex-1 min-w-0 mr-4">
-                          {/* <p className="text-white text-[10px] font-black uppercase tracking-widest opacity-70 mb-1">
-                            {heroText.projectLabel}
-                          </p> */}
-                       
-                        </div>
+                      <div className="flex justify-end">
                         <a
                           href={item.url}
                           target="_blank"
                           rel="noreferrer"
                           className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                          aria-label="View engineering project image"
                         >
                           <FiExternalLink />
                         </a>
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.figure>
                 ))}
               </AnimatePresence>
             </div>
@@ -205,13 +203,13 @@ export default function PublicGalleryPage() {
               <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                 <FiImage className="text-3xl text-gray-400" />
               </div>
-              <h3 className="text-xl font-bold text-[#0A192F]">
+              <h2 className="text-xl font-bold text-[#0A192F]">
                 {heroText.emptyTitle}
-              </h3>
+              </h2>
               <p className="text-gray-500 mt-2">{heroText.emptyDesc}</p>
             </div>
           )}
-        </div>
+        </section>
       </SectionWrapper>
     </>
   );

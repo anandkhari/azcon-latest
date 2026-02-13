@@ -8,15 +8,26 @@ import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FlotingActionButtons";
 
 export async function generateMetadata({ params }) {
-  const { locale } = await params;
+  const { locale } = params; // ✅ remove await
 
   setRequestLocale(locale);
 
+  const isEn = locale === "en";
+
   return {
-    title: "Azcon Technologies",
-    description: "Specialized technical domains and infrastructure maintenance across the UAE.",
+    metadataBase: new URL("https://azconinfra.com"),
+
+    title: {
+      default: isEn ? "Azcon Infra" : "أزكون إنفرا",
+      template: "%s | Azcon Infra",
+    },
+
+    description: isEn
+      ? "Specialized technical domains and infrastructure maintenance across the UAE."
+      : "حلول البنية التحتية والصيانة التقنية المتخصصة في جميع أنحاء الإمارات.",
   };
 }
+
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

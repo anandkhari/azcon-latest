@@ -97,54 +97,63 @@ const cards = valuesT.raw("cards");
       </section>
 
       {/* --- THE EDGE SECTION --- */}
-      <SectionWrapper className="bg-white">
-  <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 lg:gap-24 items-center">
+    <SectionWrapper className="bg-white py-16 md:py-24 overflow-hidden">
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
     
     {/* IMAGE COLUMN */}
-    <div className="relative h-full">
+    <div className="relative px-4 md:px-0">
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="relative h-full shadow-2xl overflow-hidden rounded-sm border border-white"
+        /* Crucial Fix: aspect-[4/5] ensures the image has height on mobile 
+           while md:h-[600px] maintains the grand scale on desktop.
+        */
+        className="relative aspect-[4/5] md:aspect-auto md:h-[650px] shadow-2xl overflow-hidden rounded-2xl border border-gray-100"
       >
         <Image
           src="https://images.pexels.com/photos/8482823/pexels-photo-8482823.jpeg"
           alt="Azcon Technical Leadership"
           fill
-          className="object-cover rounded-2xl"
+          className="object-cover transition-transform duration-700 hover:scale-105"
           sizes="(min-width: 1024px) 50vw, 100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
+        {/* Subtle overlay for text legibility if needed */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/40 to-transparent md:hidden" />
       </motion.div>
 
-      {/* 18+ Years Badge */}
+      {/* 18+ Years Badge - Re-positioned for mobile thumb-zones */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="absolute -bottom-6 -right-6 bg-primary p-6 md:p-8 shadow-xl border-b-4 border-accent z-20"
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+        className="absolute -bottom-4 right-2 md:-bottom-8 md:-right-8 bg-[#0A192F] p-5 md:p-8 shadow-2xl border-b-4 border-[#26C6DA] z-20 min-w-[140px]"
       >
-        <p className="text-accent font-bold text-4xl leading-none">
+        <p className="text-[#26C6DA] font-bold text-3xl md:text-5xl leading-none">
           {t("Edge.StatsPrefix")}
         </p>
-        <p className="text-white text-[10px] font-semibold uppercase tracking-widest">
+        <p className="text-white text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] mt-2">
           {t("Edge.StatsLabel")}
         </p>
       </motion.div>
     </div>
 
     {/* CONTENT COLUMN */}
-    <div className="space-y-12">
+    <div className="space-y-8 md:space-y-12 px-6 md:px-0">
       <div className="space-y-6">
         <div className="flex items-center gap-4">
-          <span className="w-12 h-[2px] bg-[#26C6DA]" />
-          <span className="text-[#26C6DA] text-xs font-semibold tracking-[0.4em] uppercase">
+          <span className="w-10 md:w-12 h-[2px] bg-[#26C6DA]" />
+          <span className="text-[#26C6DA] text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase">
             {t("Edge.Label")}
           </span>
         </div>
 
-        <h2 className="text-5xl md:text-7xl font-semibold text-[#0A192F] tracking-tighter leading-[1.2]">
+        {/* Responsive Typography: text-4xl on mobile prevents awkward 
+           single-word wrapping, text-7xl on desktop stays premium.
+        */}
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-[#0A192F] tracking-tighter leading-[1.1] md:leading-[1.2]">
           {t.rich("Edge.Title", {
             italic: (chunks) => (
               <span className="text-[#26C6DA]">{chunks}</span>
@@ -153,22 +162,24 @@ const cards = valuesT.raw("cards");
         </h2>
       </div>
 
-      <p className="text-[#486581] text-base md:text-lg leading-relaxed">
+      <p className="text-[#486581] text-base md:text-lg leading-relaxed max-w-xl">
         {t("Edge.Description")}
       </p>
 
       {/* CTA → CONTACT */}
-      <Link
-        href="/contact"
-        className="group inline-flex items-center gap-4 text-[#0A192F] font-black text-xs uppercase tracking-[0.3em] transition-all"
-      >
-        <span className="border-b-2 border-[#0A192F] pb-1 group-hover:text-[#26C6DA] group-hover:border-[#26C6DA] transition-all">
-          {t("Edge.Methodology")}
-        </span>
-        <span className="text-[#26C6DA] text-xl group-hover:translate-x-2 transition-transform">
-          →
-        </span>
-      </Link>
+      <div className="pt-4 md:pt-0">
+        <Link
+          href="/contact"
+          className="group inline-flex items-center gap-4 text-[#0A192F] font-black text-[11px] md:text-xs uppercase tracking-[0.3em] transition-all"
+        >
+          <span className="border-b-2 border-[#0A192F] pb-1 group-hover:text-[#26C6DA] group-hover:border-[#26C6DA] transition-all">
+            {t("Edge.Methodology")}
+          </span>
+          <span className="text-[#26C6DA] text-xl group-hover:translate-x-2 transition-transform duration-300">
+            →
+          </span>
+        </Link>
+      </div>
     </div>
   </div>
 </SectionWrapper>
