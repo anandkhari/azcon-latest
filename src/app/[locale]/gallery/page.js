@@ -17,12 +17,14 @@ export default function PublicGalleryPage() {
   const [galleryItems, setGalleryItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  /* ⭐ NEW FILTER STATE */
+  /* ⭐ FILTER STATE */
   const [activeCategory, setActiveCategory] = useState("all");
 
-  /* ⭐ AUTO-DETECT CATEGORIES FROM FIRESTORE */
- const categories = ["all", ...SERVICE_CATEGORIES.map((s) => s.value)];
+  /* ⭐ PREVIEW MODAL STATE */
+  const [previewIndex, setPreviewIndex] = useState(null);
 
+  /* ⭐ SERVICE BASED CATEGORIES */
+  const categories = ["all", ...SERVICE_CATEGORIES.map((s) => s.value)];
 
   /* ⭐ FILTERED ITEMS */
   const filteredItems =
@@ -32,7 +34,8 @@ export default function PublicGalleryPage() {
 
   const [heroText, setHeroText] = useState({
     title: "Engineering Project Gallery",
-    desc: "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
+    desc:
+      "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
     emptyTitle: "Gallery is empty",
     emptyDesc:
       "New engineering project visuals will appear here once published.",
@@ -48,11 +51,11 @@ export default function PublicGalleryPage() {
           snapshot.docs.map((docSnap) => ({
             id: docSnap.id,
             ...docSnap.data(),
-          })),
+          }))
         );
         setIsLoading(false);
       },
-      () => setIsLoading(false),
+      () => setIsLoading(false)
     );
 
     return () => unsub();
@@ -66,7 +69,8 @@ export default function PublicGalleryPage() {
       if (language !== "ar") {
         setHeroText({
           title: "Engineering Project Gallery",
-          desc: "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
+          desc:
+            "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
           emptyTitle: "Gallery is empty",
           emptyDesc:
             "New engineering project visuals will appear here once published.",
@@ -78,12 +82,12 @@ export default function PublicGalleryPage() {
         translateText("Engineering Project Gallery", "ar"),
         translateText(
           "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
-          "ar",
+          "ar"
         ),
         translateText("Gallery is empty", "ar"),
         translateText(
           "New engineering project visuals will appear here once published.",
-          "ar",
+          "ar"
         ),
       ]);
 
@@ -175,14 +179,15 @@ export default function PublicGalleryPage() {
           ) : filteredItems.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               <AnimatePresence mode="popLayout">
-                {filteredItems.map((item) => (
+                {filteredItems.map((item, index) => (
                   <motion.figure
                     key={item.id}
                     layout
+                    onClick={() => setPreviewIndex(index)}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="group relative aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
+                    className="group relative aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
                   >
                     <img
                       src={item.url}
@@ -200,14 +205,9 @@ export default function PublicGalleryPage() {
                     </figcaption>
 
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 flex justify-end items-end p-6">
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
-                      >
+                      <div className="p-2 bg-white/10 text-white rounded-lg">
                         <FiExternalLink />
-                      </a>
+                      </div>
                     </div>
                   </motion.figure>
                 ))}
@@ -224,6 +224,66 @@ export default function PublicGalleryPage() {
           )}
         </section>
       </SectionWrapper>
+
+      {/* ================= PREVIEW MODAL ================= */}
+      <AnimatePresence>
+        {previewIndex !== null && filteredItems[previewIndex] && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-[#0A192F]/95 flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div
+              className="absolute inset-0"
+              onClick={() => setPreviewIndex(null)}
+            />
+
+            <motion.div
+              className="relative max-w-6xl w-full z-10 flex items-center justify-center"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              <img
+                src={filteredItems[previewIndex].url}
+                className="max-h-[85vh] w-auto object-contain rounded-xl shadow-2xl"
+              />
+
+              <button
+                onClick={() => setPreviewIndex(null)}
+                className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full"
+              >
+                ✕
+              </button>
+
+              {previewIndex > 0 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPreviewIndex(previewIndex - 1);
+                  }}
+                  className="absolute left-0 md:-left-16 text-white text-4xl px-4"
+                >
+                  ‹
+                </button>
+              )}
+
+              {previewIndex < filteredItems.length - 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPreviewIndex(previewIndex + 1);
+                  }}
+                  className="absolute right-0 md:-right-16 text-white text-4xl px-4"
+                >
+                  ›
+                </button>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
