@@ -9,6 +9,7 @@ import Image from "next/image";
 import SectionWrapper from "@/components/SectionWrapper";
 import { translateText } from "@/lib/translate";
 import { useLanguage } from "@/context/LanguageContext";
+import { SERVICE_CATEGORIES } from "@/data/serviceCategories";
 
 export default function PublicGalleryPage() {
   const { language } = useLanguage();
@@ -20,10 +21,8 @@ export default function PublicGalleryPage() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   /* ⭐ AUTO-DETECT CATEGORIES FROM FIRESTORE */
-  const categories = [
-    "all",
-    ...Array.from(new Set(galleryItems.map((i) => i.category).filter(Boolean))),
-  ];
+ const categories = ["all", ...SERVICE_CATEGORIES.map((s) => s.value)];
+
 
   /* ⭐ FILTERED ITEMS */
   const filteredItems =
@@ -33,8 +32,7 @@ export default function PublicGalleryPage() {
 
   const [heroText, setHeroText] = useState({
     title: "Engineering Project Gallery",
-    desc:
-      "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
+    desc: "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
     emptyTitle: "Gallery is empty",
     emptyDesc:
       "New engineering project visuals will appear here once published.",
@@ -50,11 +48,11 @@ export default function PublicGalleryPage() {
           snapshot.docs.map((docSnap) => ({
             id: docSnap.id,
             ...docSnap.data(),
-          }))
+          })),
         );
         setIsLoading(false);
       },
-      () => setIsLoading(false)
+      () => setIsLoading(false),
     );
 
     return () => unsub();
@@ -68,8 +66,7 @@ export default function PublicGalleryPage() {
       if (language !== "ar") {
         setHeroText({
           title: "Engineering Project Gallery",
-          desc:
-            "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
+          desc: "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
           emptyTitle: "Gallery is empty",
           emptyDesc:
             "New engineering project visuals will appear here once published.",
@@ -81,12 +78,12 @@ export default function PublicGalleryPage() {
         translateText("Engineering Project Gallery", "ar"),
         translateText(
           "Explore Azcon’s engineering projects, building maintenance works, infrastructure installations, and technical service executions delivered across UAE industries.",
-          "ar"
+          "ar",
         ),
         translateText("Gallery is empty", "ar"),
         translateText(
           "New engineering project visuals will appear here once published.",
-          "ar"
+          "ar",
         ),
       ]);
 
@@ -145,10 +142,7 @@ export default function PublicGalleryPage() {
 
       {/* ================= GALLERY ================= */}
       <SectionWrapper className="bg-[#f8fafc] min-h-screen py-24">
-        <section
-          className="container mx-auto px-6 max-w-7xl"
-          dir="ltr"
-        >
+        <section className="container mx-auto px-6 max-w-7xl" dir="ltr">
           {/* ⭐ CATEGORY FILTER BAR */}
           <div className="flex justify-center gap-6 flex-wrap mb-16">
             {categories.map((cat) => (
@@ -161,7 +155,10 @@ export default function PublicGalleryPage() {
                     : "text-gray-500 hover:text-[#26C6DA]"
                 }`}
               >
-                {cat.replace("-", " ")}
+                {cat === "all"
+                  ? "All"
+                  : SERVICE_CATEGORIES.find((s) => s.value === cat)?.label ||
+                    cat}
               </button>
             ))}
           </div>

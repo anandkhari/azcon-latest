@@ -58,6 +58,51 @@ export const services = [
 },
 
 {
+  slug: "infrastructure",
+  title: "Infrastructure Maintenance",
+  shortDescription:
+    "Long-term public and private infrastructure maintenance services.",
+  description:
+    "We maintain roads, drainage networks, utilities, water systems, landscaping, and environmental assets.",
+  image: "/infrastructure11.jpeg",
+
+  features: [
+    { label: "Road & pavement maintenance", icon: FaRoad },
+    { label: "Drainage network services", icon: FaWater },
+    { label: "Utility systems upkeep", icon: FaIndustry },
+    { label: "Landscaping & environment", icon: FaBuilding }
+  ],
+
+ faqs: [
+  {
+    q: "What types of infrastructure do you maintain?",
+    a: "We maintain roads, pavements, drainage networks, water systems, utilities, landscaping, and environmental assets."
+  },
+  {
+    q: "Do you handle large-scale infrastructure projects?",
+    a: "Yes. We work on municipal, commercial, and private infrastructure developments across the UAE."
+  },
+  {
+    q: "Do you offer long-term maintenance contracts?",
+    a: "Yes, we provide scheduled maintenance programs to ensure asset longevity and compliance."
+  },
+  {
+    q: "Do you repair damaged roads and drainage systems?",
+    a: "Yes. We handle crack sealing, resurfacing, pipeline repairs, and drainage cleaning."
+  },
+  {
+    q: "Can you maintain utility and pumping stations?",
+    a: "Yes. We service pumping systems, electrical networks, and infrastructure utilities."
+  },
+  {
+    q: "Do you provide emergency response services?",
+    a: "Yes. Our teams respond to flooding, system failures, and urgent infrastructure issues."
+  }
+]
+
+},
+
+{
   slug: "fit-out-works",
   title: "Fit-Out Works",
   shortDescription:
@@ -289,49 +334,6 @@ export const services = [
 
 },
 
-{
-  slug: "infrastructure",
-  title: "Infrastructure Maintenance",
-  shortDescription:
-    "Long-term public and private infrastructure maintenance services.",
-  description:
-    "We maintain roads, drainage networks, utilities, water systems, landscaping, and environmental assets.",
-  image: "/infrastructure.jpg",
 
-  features: [
-    { label: "Road & pavement maintenance", icon: FaRoad },
-    { label: "Drainage network services", icon: FaWater },
-    { label: "Utility systems upkeep", icon: FaIndustry },
-    { label: "Landscaping & environment", icon: FaBuilding }
-  ],
-
- faqs: [
-  {
-    q: "What types of infrastructure do you maintain?",
-    a: "We maintain roads, pavements, drainage networks, water systems, utilities, landscaping, and environmental assets."
-  },
-  {
-    q: "Do you handle large-scale infrastructure projects?",
-    a: "Yes. We work on municipal, commercial, and private infrastructure developments across the UAE."
-  },
-  {
-    q: "Do you offer long-term maintenance contracts?",
-    a: "Yes, we provide scheduled maintenance programs to ensure asset longevity and compliance."
-  },
-  {
-    q: "Do you repair damaged roads and drainage systems?",
-    a: "Yes. We handle crack sealing, resurfacing, pipeline repairs, and drainage cleaning."
-  },
-  {
-    q: "Can you maintain utility and pumping stations?",
-    a: "Yes. We service pumping systems, electrical networks, and infrastructure utilities."
-  },
-  {
-    q: "Do you provide emergency response services?",
-    a: "Yes. Our teams respond to flooding, system failures, and urgent infrastructure issues."
-  }
-]
-
-}
 
 ]

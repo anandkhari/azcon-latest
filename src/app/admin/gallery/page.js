@@ -165,24 +165,26 @@ export default function AdminDashboard() {
         </div>
 
         {/* GRID */}
-     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-  {filteredItems.map((item) => (
-    <div key={item.id} className="relative group aspect-[4/3] overflow-hidden rounded-xl">
-      <img src={item.url} className="w-full h-full object-cover" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {filteredItems.map((item) => (
+            <div
+              key={item.id}
+              className="relative group aspect-[4/3] overflow-hidden rounded-xl"
+            >
+              <img src={item.url} className="w-full h-full object-cover" />
 
-      {/* Small floating delete button */}
-      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-        <button
-          onClick={() => handleDelete(item)}
-          className="bg-red-500 text-white p-2 rounded-lg shadow-lg hover:scale-105 transition-transform"
-        >
-          <FiTrash2 />
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
-
+              {/* Small floating delete button */}
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button
+                  onClick={() => handleDelete(item)}
+                  className="bg-red-500 text-white p-2 rounded-lg shadow-lg hover:scale-105 transition-transform"
+                >
+                  <FiTrash2 />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ================= UPLOAD MODAL RESTORED ================= */}
@@ -229,17 +231,20 @@ export default function AdminDashboard() {
                   <label className="text-[10px] font-black  uppercase tracking-[0.2em] text-black">
                     Target Category
                   </label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="w-full bg-gray-50 border-2 border-gray-100  text-black focus:border-[#26C6DA] rounded-2xl p-4 text-sm font-bold outline-none transition-all appearance-none cursor-pointer"
-                  >
-                    <option value="carpentry">Carpentry</option>
-                    <option value="fitout-commercial">Fitout Commercial</option>
-                    <option value="maintenance">Maintenance</option>
-                    <option value="steel-works">Steel Works</option>
-                    <option value="styrofoam-works">Styrofoam Works</option>
-                  </select>
+               <select
+  value={category}
+  onChange={(e) => setCategory(e.target.value)}
+  className="w-full bg-gray-50 border-2 border-gray-100 text-black focus:border-[#26C6DA] rounded-2xl p-4 text-sm font-bold outline-none transition-all appearance-none cursor-pointer"
+>
+  <option value="building-maintenance">Building Maintenance</option>
+  <option value="infrastructure-maintenance">Infrastructure Maintenance</option>
+  <option value="fit-out-works">Fit-Out Works</option>
+  <option value="hvac-works">HVAC Works</option>
+  <option value="electrical-works">Electrical Works</option>
+  <option value="plumbing-contracting">Plumbing Contracting</option>
+  <option value="metal-fabrication">Metal Fabrication</option>
+</select>
+
                 </div>
 
                 {/* DRAG & DROP ZONE */}

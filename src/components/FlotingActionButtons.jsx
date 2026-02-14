@@ -19,7 +19,7 @@ const FloatingActions = () => {
       
       {/* 1. CALL BUTTON - HEXAGONAL ENGINEERING SHAPE */}
       <a
-        href="tel:+971 4 294 5885 "
+        href="tel:+97142945885"
         className="group relative flex items-center justify-center w-14 h-14 bg-[#0A192F] text-[#26C6DA] transition-all duration-300 hover:scale-110 shadow-xl"
         style={{ clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" }}
         aria-label="Call Azcon"
@@ -35,7 +35,7 @@ const FloatingActions = () => {
 
       {/* 2. WHATSAPP BUTTON - BRAND GREEN & ROUNDED */}
       <a
-        href="https://wa.me/971 554753102"
+        href="https://wa.me/971554753102"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110"
