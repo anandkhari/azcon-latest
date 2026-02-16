@@ -1,16 +1,16 @@
-const BASE_URL = "https://azconinfra.com";
+const BASE_URL = "https://www.azconinfra.com";
 
 export default function sitemap() {
   const routes = [
     "/en",
-    "/en/about",      // ⭐ add this
+    "/en/about",
     "/en/services",
     "/en/blog",
     "/en/contact",
     "/en/gallery",
 
     "/ar",
-    "/ar/about",      // ⭐ add this
+    "/ar/about",
     "/ar/services",
     "/ar/blog",
     "/ar/contact",

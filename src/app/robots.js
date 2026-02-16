@@ -1,4 +1,4 @@
-const BASE_URL = "https://azconinfra.com";
+const BASE_URL = "https://www.azconinfra.com";
 
 export default function robots() {
   return {

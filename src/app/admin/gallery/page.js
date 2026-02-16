@@ -231,20 +231,25 @@ export default function AdminDashboard() {
                   <label className="text-[10px] font-black  uppercase tracking-[0.2em] text-black">
                     Target Category
                   </label>
-               <select
-  value={category}
-  onChange={(e) => setCategory(e.target.value)}
-  className="w-full bg-gray-50 border-2 border-gray-100 text-black focus:border-[#26C6DA] rounded-2xl p-4 text-sm font-bold outline-none transition-all appearance-none cursor-pointer"
->
-  <option value="building-maintenance">Building Maintenance</option>
-  <option value="infrastructure-maintenance">Infrastructure Maintenance</option>
-  <option value="fit-out-works">Fit-Out Works</option>
-  <option value="hvac-works">HVAC Works</option>
-  <option value="electrical-works">Electrical Works</option>
-  <option value="plumbing-contracting">Plumbing Contracting</option>
-  <option value="metal-fabrication">Metal Fabrication</option>
-</select>
-
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full bg-gray-50 border-2 border-gray-100 text-black focus:border-[#26C6DA] rounded-2xl p-4 text-sm font-bold outline-none transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="building-maintenance">
+                      Building Maintenance
+                    </option>
+                    <option value="infrastructure-maintenance">
+                      Infrastructure Maintenance
+                    </option>
+                    <option value="fit-out-works">Fit-Out Works</option>
+                    <option value="hvac-works">HVAC Works</option>
+                    <option value="electrical-works">Electrical Works</option>
+                    <option value="plumbing-contracting">
+                      Plumbing Contracting
+                    </option>
+                    <option value="metal-fabrication">Metal Fabrication</option>
+                  </select>
                 </div>
 
                 {/* DRAG & DROP ZONE */}
