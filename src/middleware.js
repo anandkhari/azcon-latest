@@ -1,12 +1,23 @@
-import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-export default createMiddleware(routing);
+const intlMiddleware = createMiddleware(routing);
+
+export default function middleware(req) {
+  const { pathname } = req.nextUrl;
+
+  // ⭐ Skip metadata/system files completely
+  if (
+    pathname.startsWith("/sitemap.xml") ||
+    pathname.startsWith("/robots.txt") ||
+    pathname.startsWith("/favicon.ico")
+  ) {
+    return;
+  }
+
+  return intlMiddleware(req);
+}
 
 export const config = {
-  // Match all pathnames except for
-  // - … if they contain a dot, e.g. `favicon.ico`
-  // - node_modules
-  // - any system files (e.g. `_next`)
-  matcher: ['/((?!api|_next|_vercel|.*\\..*|admin).*)']
+  matcher: ["/((?!api|_next|_vercel|.*\\..*|admin).*)"],
 };
