@@ -9,7 +9,7 @@ const CTA = ({
   primaryBtnText,
   primaryBtnLink = "/contact",
   secondaryBtnText,
-  secondaryBtnLink = "https://wa.me/971554753102",
+  secondaryBtnLink = "https://wa.me/971503476962",
 
 }) => {
   const t = useTranslations("CTA");
