@@ -200,13 +200,13 @@ const Footer = () => {
           <div className="flex gap-8 mt-4 md:mt-0">
             <Link
               href="/privacy"
-              className="hover:text-[#26C6DA] transition-colors"
+              className="text-white hover:text-[#26C6DA] transition-colors"
             >
               {t("Links.Privacy")}
             </Link>
             <Link
               href="/terms"
-              className="hover:text-[#26C6DA] transition-colors"
+              className="text-white hover:text-[#26C6DA] transition-colors"
             >
               {t("Links.Terms")}
             </Link>
